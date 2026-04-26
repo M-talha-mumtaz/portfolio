@@ -15,7 +15,7 @@ const Footer = () => {
             TALHA<span className="text-primary">.DEV</span>
           </Link>
           <p className="text-xs font-bold text-gray-400 tracking-widest leading-loose uppercase">
-            Architecting elite digital experiences. Cyberpunk Edition.
+            Architecting elite digital experiences.
           </p>
         </div>
         
