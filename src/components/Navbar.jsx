@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import logo from '../assets/logo.png';
+import { portfolioData } from '../data/portfolioData';
 
 const Navbar = () => {
   const location = useLocation();
@@ -74,7 +76,7 @@ const Navbar = () => {
             className="fixed inset-0 bg-dark/95 backdrop-blur-2xl z-40 md:hidden flex flex-col items-center justify-center pointer-events-auto"
             style={{ height: '100vh' }}
           >
-            <div className="flex flex-col items-center gap-8">
+            <div className="flex flex-col items-center gap-4 md:gap-8">
               {navLinks.map((link, i) => (
                 <motion.div
                   key={link.path}
@@ -84,7 +86,7 @@ const Navbar = () => {
                 >
                   <Link
                     to={link.path}
-                    className={`text-3xl font-bold tracking-widest uppercase transition-all ${isActive(link.path) ? 'text-primary neon-text' : 'text-white hover:text-primary'}`}
+                    className={`text-2xl md:text-3xl font-bold tracking-widest uppercase transition-all ${isActive(link.path) ? 'text-primary neon-text' : 'text-white hover:text-primary'}`}
                     onClick={() => setIsOpen(false)}
                   >
                     {link.name}
@@ -97,9 +99,17 @@ const Navbar = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="absolute bottom-12 flex flex-col items-center gap-4"
+              className="mt-12 flex flex-col items-center gap-4"
             >
               <p className="text-xs font-bold text-gray-500 tracking-[0.3em] uppercase">Connect with me</p>
+              <div className="flex gap-6 text-white/50">
+                <a href={portfolioData.profile.socials.github} target="_blank" rel="noreferrer" className="hover:text-primary transition-colors">
+                  <FaGithub size={20} />
+                </a>
+                <a href={portfolioData.profile.socials.linkedin} target="_blank" rel="noreferrer" className="hover:text-primary transition-colors">
+                  <FaLinkedin size={20} />
+                </a>
+              </div>
               <div className="h-[1px] w-12 bg-primary/30"></div>
             </motion.div>
           </motion.div>
