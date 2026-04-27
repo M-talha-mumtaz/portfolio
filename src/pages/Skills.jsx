@@ -34,7 +34,7 @@ const Skills = () => {
                   {category.title}
                 </h2>
                 
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
                   {category.skills.map((skill, i) => {
                     const IconComponent = getIconComponent(skill.icon);
                     return (
@@ -44,7 +44,7 @@ const Skills = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: i * 0.05 }}
-                        className="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center gap-4 hover:bg-white/10 transition-all duration-300 group cursor-default"
+                        className="glass-panel p-4 md:p-6 rounded-2xl flex flex-col items-center justify-center gap-2 md:gap-4 hover:bg-white/10 transition-all duration-300 group cursor-default"
                         style={{ '--hover-color': skill.color }}
                         onMouseEnter={(e) => {
                           e.currentTarget.style.boxShadow = `0 0 20px ${skill.color}40, inset 0 0 10px ${skill.color}20`;
@@ -55,10 +55,10 @@ const Skills = () => {
                           e.currentTarget.style.borderColor = '';
                         }}
                       >
-                        <div className="w-16 h-16 rounded-full bg-dark-surface border border-white/5 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-sm">
-                          {IconComponent && <IconComponent size={32} style={{ color: skill.color }} className="drop-shadow-lg" />}
+                        <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-dark-surface border border-white/5 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-sm">
+                          {IconComponent && <IconComponent size={24} style={{ color: skill.color }} className="drop-shadow-lg md:scale-125" />}
                         </div>
-                        <span className="text-white font-bold tracking-wider text-center">{skill.name}</span>
+                        <span className="text-white font-bold tracking-wider text-sm md:text-base text-center">{skill.name}</span>
                       </motion.div>
                     );
                   })}

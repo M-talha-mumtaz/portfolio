@@ -9,8 +9,8 @@ const Footer = () => {
     <footer className="relative border-t border-white/5 overflow-hidden py-16 md:py-24">
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[200px] bg-primary/5 rounded-full blur-[100px] pointer-events-none"></div>
       
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 relative z-10 flex flex-col md:flex-row justify-between items-start md:items-end gap-12">
-        <div className="flex flex-col space-y-6 max-w-sm">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 relative z-10 flex flex-col md:flex-row justify-between items-center md:items-end gap-12 text-center md:text-left">
+        <div className="flex flex-col items-center md:items-start space-y-6 max-w-sm">
           <Link to="/" className="text-2xl font-extrabold tracking-widest text-white uppercase neon-text">
             TALHA<span className="text-primary">.DEV</span>
           </Link>
@@ -19,8 +19,8 @@ const Footer = () => {
           </p>
         </div>
         
-        <div className="flex flex-col items-start md:items-end space-y-6">
-          <div className="flex flex-wrap gap-6 md:gap-8 text-sm font-bold tracking-widest text-white uppercase">
+        <div className="flex flex-col items-center md:items-end space-y-6">
+          <div className="flex flex-wrap justify-center md:justify-end gap-6 md:gap-8 text-sm font-bold tracking-widest text-white uppercase">
             {socials.github !== '#' && (
               <a href={socials.github} target="_blank" rel="noreferrer" className="hover:text-primary transition-colors hover:neon-text">Github</a>
             )}

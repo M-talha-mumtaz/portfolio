@@ -34,7 +34,7 @@ const Home = () => {
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="order-2 lg:order-1 flex flex-col items-start text-left space-y-6 relative z-10"
+              className="order-2 lg:order-1 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6 relative z-10"
             >
               <div className="inline-flex items-center gap-2 px-4 py-2 glass-panel text-primary rounded-full text-sm font-semibold">
                 <span className="relative flex h-2 w-2">
@@ -54,7 +54,7 @@ const Home = () => {
               
 
               
-              <div className="flex gap-4 pt-4">
+              <div className="flex flex-col sm:flex-row gap-4 pt-4 w-full sm:w-auto">
                 <Link 
                   to="/projects"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary/10 text-primary border border-primary/50 font-semibold rounded-xl hover:bg-primary/20 hover:neon-border transition-all duration-300 transform hover:-translate-y-1"
@@ -127,9 +127,9 @@ const Home = () => {
               {[...allSkills, ...allSkills].map((skill, i) => {
                 const IconComponent = getIconComponent(skill.icon);
                 return (
-                  <div key={`${skill.name}-${i}`} className="mx-4 flex items-center gap-3 bg-dark-surface/50 border border-white/10 px-8 py-4 rounded-full hover:bg-white/10 transition-colors shadow-sm">
-                    {IconComponent && <IconComponent size={28} style={{ color: skill.color }} />}
-                    <span className="text-white font-bold tracking-wider">{skill.name}</span>
+                  <div key={`${skill.name}-${i}`} className="mx-2 md:mx-4 flex items-center gap-2 md:gap-3 bg-dark-surface/50 border border-white/10 px-4 md:px-8 py-3 md:py-4 rounded-full hover:bg-white/10 transition-colors shadow-sm">
+                    {IconComponent && <IconComponent size={24} style={{ color: skill.color }} />}
+                    <span className="text-white font-bold tracking-wider text-sm md:text-base">{skill.name}</span>
                   </div>
                 );
               })}
@@ -139,9 +139,9 @@ const Home = () => {
               {[...allSkills, ...allSkills].map((skill, i) => {
                 const IconComponent = getIconComponent(skill.icon);
                 return (
-                  <div key={`copy-${skill.name}-${i}`} className="mx-4 flex items-center gap-3 bg-dark-surface/50 border border-white/10 px-8 py-4 rounded-full hover:bg-white/10 transition-colors shadow-sm">
-                    {IconComponent && <IconComponent size={28} style={{ color: skill.color }} />}
-                    <span className="text-white font-bold tracking-wider">{skill.name}</span>
+                  <div key={`copy-${skill.name}-${i}`} className="mx-2 md:mx-4 flex items-center gap-2 md:gap-3 bg-dark-surface/50 border border-white/10 px-4 md:px-8 py-3 md:py-4 rounded-full hover:bg-white/10 transition-colors shadow-sm">
+                    {IconComponent && <IconComponent size={24} style={{ color: skill.color }} />}
+                    <span className="text-white font-bold tracking-wider text-sm md:text-base">{skill.name}</span>
                   </div>
                 );
               })}
@@ -190,7 +190,7 @@ const Home = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="glass-panel p-10 md:p-16 lg:p-20 rounded-[3rem] relative overflow-hidden group hover:neon-border-purple transition-all duration-500 shadow-2xl flex flex-col items-center text-center"
+              className="glass-panel p-6 md:p-16 lg:p-20 rounded-[2rem] md:rounded-[3rem] relative overflow-hidden group hover:neon-border-purple transition-all duration-500 shadow-2xl flex flex-col items-center text-center"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/10 opacity-50 group-hover:opacity-100 transition-opacity duration-700"></div>
               

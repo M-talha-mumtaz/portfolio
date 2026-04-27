@@ -74,7 +74,7 @@ const Contact = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-8 glass-panel p-8 md:p-12 rounded-[2rem]">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-8 glass-panel p-6 md:p-12 rounded-[2rem]">
 
             <div className="lg:col-span-2 flex flex-col space-y-8">
               <div>
@@ -89,9 +89,9 @@ const Contact = () => {
                   <div className="w-12 h-12 bg-dark-surface border border-primary/20 rounded-xl flex items-center justify-center text-primary neon-border">
                     <Mail size={24} />
                   </div>
-                  <div>
+                  <div className="flex-1 min-w-0">
                     <p className="text-sm font-bold text-primary uppercase tracking-wider">Email</p>
-                    <p className="font-semibold text-white tracking-wide">{profile.email}</p>
+                    <p className="font-semibold text-white tracking-wide break-all">{profile.email}</p>
                   </div>
                 </div>
 
@@ -127,7 +127,7 @@ const Contact = () => {
             </div>
 
             <div className="lg:col-span-3">
-              <form onSubmit={handleSubmit} className="space-y-6 bg-white/5 p-8 rounded-3xl border border-white/5">
+              <form onSubmit={handleSubmit} className="space-y-6 bg-white/5 p-6 md:p-8 rounded-3xl border border-white/5">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label htmlFor="name" className="text-sm font-bold text-gray-300 uppercase tracking-widest">Your Name</label>
