@@ -32,8 +32,8 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="fixed w-full top-4 md:top-6 z-50 px-4 md:px-12 lg:px-24 pointer-events-none">
-      <nav className="max-w-7xl mx-auto glass-panel rounded-[2rem] h-16 md:h-20 flex items-center justify-between px-6 md:px-12 pointer-events-auto transition-all duration-300 hover:neon-border hover:border-primary/50 relative z-50">
+    <div className="fixed inset-x-0 top-4 md:top-6 z-50 px-4 md:px-12 lg:px-24 pointer-events-none">
+      <nav className="max-w-7xl mx-auto glass-panel rounded-[2rem] h-16 md:h-20 flex items-center justify-between px-4 md:px-12 pointer-events-auto transition-all duration-300 hover:neon-border hover:border-primary/50 relative z-50">
         <Link to="/" className="flex items-center gap-1 hover:opacity-80 transition-opacity">
           <img src={logo} alt="Talha.dev Logo" className="h-6 sm:h-8 md:h-10 w-auto filter brightness-200 invert" />
           <span className="text-lg md:text-xl font-bold tracking-tight text-white">

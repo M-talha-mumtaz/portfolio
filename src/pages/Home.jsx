@@ -27,7 +27,7 @@ const Home = () => {
   return (
     <PageTransition>
       <div className="pb-32">
-        <section className="flex items-center pt-8 pb-16 lg:pt-12 lg:pb-24">
+        <section className="flex items-center pt-8 pb-16 lg:pt-12 lg:pb-24 relative overflow-hidden">
           <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
             
             <motion.div 
@@ -95,7 +95,7 @@ const Home = () => {
           </div>
         </section>
 
-        <section className="py-16 relative border-t border-white/5">
+        <section className="py-16 relative border-t border-white/5 overflow-hidden">
           <div className="max-w-5xl mx-auto px-6 relative z-10">
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }}
@@ -152,7 +152,7 @@ const Home = () => {
           </div>
         </section>
 
-        <section className="py-20 border-t border-white/5 relative">
+        <section className="py-20 border-t border-white/5 relative overflow-hidden">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[120px] pointer-events-none"></div>
           
           <div className="max-w-7xl mx-auto relative z-10">
@@ -181,7 +181,7 @@ const Home = () => {
           </div>
         </section>
 
-        <section className="py-24 relative border-t border-white/5">
+        <section className="py-24 relative border-t border-white/5 overflow-hidden">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-primary/10 rounded-full blur-[150px] pointer-events-none"></div>
           
           <div className="max-w-5xl mx-auto px-6 relative z-10">
