@@ -1,5 +1,3 @@
-import salonImage from '../assets/salon.png';
-
 export const portfolioData = {
   profile: {
     name: 'Muhammad Talha',
@@ -8,6 +6,7 @@ export const portfolioData = {
     availability: 'Available for projects',
     location: 'Remote / Global',
     email: 'mtalha3632@gmail.com',
+    cvUrl: '/Muhammad_Talha_CV.pdf',
     socials: {
       github: 'https://github.com/M-talha-mumtaz',
       linkedin: 'https://linkedin.com/in/m-talha-mumtaz',
@@ -31,7 +30,7 @@ export const portfolioData = {
       title: 'Salon Web App',
       description: 'A modern web application for a salon, featuring service booking, secure admin dashboard, and responsive design.',
       tech: ['React', 'Node.js', 'MongoDB', 'Tailwind CSS'],
-      image: salonImage,
+      image: '/projects/salon.png',
       featured: true,
       link: 'https://apex-grooming-salon.vercel.app'
     }

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Send, MapPin, Mail, Loader2, CheckCircle2 } from 'lucide-react';
+import { Send, MapPin, Mail, Loader2, CheckCircle2, Download } from 'lucide-react';
 import { FaGithub, FaLinkedin, FaTwitter, FaInstagram } from 'react-icons/fa';
 import { portfolioData } from '../data/portfolioData';
 import PageTransition from '../components/PageTransition';
@@ -104,6 +104,19 @@ const Contact = () => {
                     <p className="font-semibold text-white tracking-wide">{profile.location}</p>
                   </div>
                 </div>
+
+                {profile.cvUrl && (
+                  <div className="pt-4">
+                    <a
+                      href={profile.cvUrl}
+                      download
+                      className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 border border-white/10 rounded-xl text-white font-bold uppercase tracking-widest hover:bg-primary/20 hover:border-primary/50 hover:text-primary transition-all duration-300 group"
+                    >
+                      <Download size={20} className="group-hover:animate-bounce" />
+                      Download CV
+                    </a>
+                  </div>
+                )}
               </div>
 
               <div className="pt-8 mt-auto">
