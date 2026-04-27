@@ -23,7 +23,8 @@ export const portfolioData = {
       description: 'Mental health platform with secure real-time video consultations.',
       tech: ['Flutter', 'Agora SDK', 'Dart'],
       image: '/projects/mentairo.png',
-      featured: true
+      featured: true,
+      status: 'Web version coming soon'
     },
     {
       id: 'salon',
@@ -31,15 +32,8 @@ export const portfolioData = {
       description: 'A modern web application for a salon, featuring service booking, secure admin dashboard, and responsive design.',
       tech: ['React', 'Node.js', 'MongoDB', 'Tailwind CSS'],
       image: salonImage,
-      featured: true
-    },
-    {
-      id: 'placeholder-2',
-      title: 'Coming Soon Project',
-      description: 'This project will be added soon.',
-      tech: ['Express', 'Tailwind CSS'],
-      image: '',
-      featured: false
+      featured: true,
+      link: 'https://apex-grooming-salon.vercel.app'
     }
   ],
   roles: [

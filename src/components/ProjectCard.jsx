@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
+import { ExternalLink } from 'lucide-react';
 
 const ProjectCard = ({ project }) => {
-  const { title, description, tech, image, featured } = project;
+  const { title, description, tech, image, featured, link, status } = project;
 
   return (
     <motion.div 
@@ -40,7 +41,7 @@ const ProjectCard = ({ project }) => {
           {description}
         </p>
         
-        <div className="flex flex-wrap gap-2 mb-2">
+        <div className="flex flex-wrap gap-2 mb-6">
           {tech.map((t) => (
             <span 
               key={t} 
@@ -49,6 +50,25 @@ const ProjectCard = ({ project }) => {
               {t}
             </span>
           ))}
+        </div>
+
+        <div className="mt-auto pt-4 border-t border-white/5 flex items-center justify-between">
+          {link ? (
+            <a 
+              href={link} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-widest hover:neon-text transition-all group/btn"
+            >
+              Open Project
+              <ExternalLink size={16} className="group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
+            </a>
+          ) : status ? (
+            <span className="text-gray-500 font-bold text-sm uppercase tracking-widest flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+              {status}
+            </span>
+          ) : null}
         </div>
       </div>
     </motion.div>
