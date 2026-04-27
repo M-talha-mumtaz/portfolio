@@ -79,9 +79,6 @@ const Contact = () => {
             <div className="lg:col-span-2 flex flex-col space-y-8">
               <div>
                 <h3 className="text-2xl font-bold text-white mb-6 uppercase tracking-widest">Contact Information</h3>
-                <p className="text-gray-400 leading-relaxed mb-8">
-                  Fill out the form and I will get back to you within 24 hours.
-                </p>
               </div>
 
               <div className="space-y-6">
@@ -106,14 +103,24 @@ const Contact = () => {
                 </div>
 
                 {profile.cvUrl && (
-                  <div className="pt-4">
+                  <div className="pt-6">
                     <a
                       href={profile.cvUrl}
                       download
-                      className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 border border-white/10 rounded-xl text-white font-bold uppercase tracking-widest hover:bg-primary/20 hover:border-primary/50 hover:text-primary transition-all duration-300 group"
+                      className="group relative inline-flex items-center gap-3 px-8 py-4 bg-primary text-dark font-black uppercase tracking-[0.2em] rounded-2xl transition-all duration-500 overflow-hidden shadow-[0_0_20px_rgba(0,240,255,0.4)] hover:bg-secondary hover:shadow-[0_0_40px_rgba(139,92,246,0.7)] hover:scale-105 active:scale-95"
                     >
-                      <Download size={20} className="group-hover:animate-bounce" />
-                      Download CV
+                      {/* Animated Shimmer Sweep */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:animate-shimmer"></div>
+                      
+                      {/* Inner Glow/Glint */}
+                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-tr from-white/10 to-transparent"></div>
+                      
+                      <Download size={22} className="relative z-10 group-hover:-translate-y-1 transition-transform duration-300" />
+                      <span className="relative z-10">Download CV</span>
+                      
+                      {/* Accent Corner Decor */}
+                      <div className="absolute top-0 right-0 w-8 h-8 bg-white/20 blur-2xl rounded-full"></div>
+                      <div className="absolute bottom-0 left-0 w-8 h-8 bg-dark/20 blur-2xl rounded-full"></div>
                     </a>
                   </div>
                 )}
@@ -140,6 +147,9 @@ const Contact = () => {
             </div>
 
             <div className="lg:col-span-3">
+              <p className="text-white font-bold mb-4 tracking-wide">
+                Fill out the form and I will get back to you within 24 hours.
+              </p>
               <form onSubmit={handleSubmit} className="space-y-6 bg-white/5 p-6 md:p-8 rounded-3xl border border-white/5">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
@@ -152,7 +162,7 @@ const Contact = () => {
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-3 rounded-xl bg-dark-surface/50 border border-white/10 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-white placeholder-gray-600"
-                      placeholder="John Doe"
+                      placeholder="Enter Your Name"
                     />
                   </div>
                   <div className="space-y-2">
@@ -165,7 +175,7 @@ const Contact = () => {
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-3 rounded-xl bg-dark-surface/50 border border-white/10 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-white placeholder-gray-600"
-                      placeholder="john@example.com"
+                      placeholder="Enter Your Email"
                     />
                   </div>
                 </div>

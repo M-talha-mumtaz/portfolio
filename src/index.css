@@ -48,9 +48,17 @@
     animation: marquee 80s linear infinite;
   }
   
+  .animate-shimmer {
+    animation: shimmer 1.5s infinite;
+  }
+  
   @keyframes marquee {
     0% { transform: translateX(0); }
     100% { transform: translateX(-100%); }
+  }
+
+  @keyframes shimmer {
+    100% { transform: translateX(100%); }
   }
 }
 
