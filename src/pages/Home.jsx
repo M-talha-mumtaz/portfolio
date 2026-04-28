@@ -33,7 +33,7 @@ const Home = () => {
             <motion.div 
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
               className="order-2 lg:order-1 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6 relative z-10"
             >
               <div className="inline-flex items-center gap-2 px-4 py-2 glass-panel text-primary rounded-full text-sm font-semibold">
@@ -73,7 +73,7 @@ const Home = () => {
             <motion.div 
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
               className="order-1 lg:order-2 flex justify-center lg:justify-end relative"
             >
               <motion.div 
@@ -87,6 +87,7 @@ const Home = () => {
                 <img 
                   src={pfpImage} 
                   alt={profile.name} 
+                  loading="lazy"
                   className="w-[90%] h-[95%] object-contain object-bottom relative z-10 group-hover:scale-105 transition-transform duration-700 drop-shadow-[0_-5px_15px_rgba(0,240,255,0.1)] group-hover:drop-shadow-[0_0_20px_rgba(0,240,255,0.3)]" 
                 />
               </motion.div>
