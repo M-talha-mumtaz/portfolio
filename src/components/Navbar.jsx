@@ -1,17 +1,13 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { ArrowRight, X } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import logo from '../assets/logo.png';
 import { portfolioData } from '../data/portfolioData';
 
 const Navbar = () => {
-  const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  
-  // Track currently active section in the viewport
   const [activeSection, setActiveSection] = useState('hero');
 
   // IntersectionObserver to dynamically highlight navbar links during scrolling
@@ -19,7 +15,7 @@ const Navbar = () => {
     const sections = ['hero', 'about', 'projects', 'skills', 'contact'];
     const observerOptions = {
       root: null,
-      rootMargin: '-35% 0px -55% 0px', // Trigger when section occupies viewport center
+      rootMargin: '-35% 0px -55% 0px',
       threshold: 0,
     };
 
@@ -48,13 +44,7 @@ const Navbar = () => {
 
   // Listen to scroll to transform navbar
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 40) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 40);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -80,11 +70,7 @@ const Navbar = () => {
 
   // Prevent scrolling when menu is open
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
+    document.body.style.overflow = isOpen ? 'hidden' : 'unset';
   }, [isOpen]);
 
   const navLinks = [
@@ -95,169 +81,181 @@ const Navbar = () => {
   ];
 
   const isLinkActive = (path) => {
-    if (path === 'hero') {
-      return activeSection === 'hero' || activeSection === 'about';
-    }
+    if (path === 'hero') return activeSection === 'hero' || activeSection === 'about';
     return activeSection === path;
   };
 
   return (
-    <div className="fixed inset-x-0 top-0 z-50 w-full flex justify-center pointer-events-none transition-all duration-500 py-4 md:py-6">
-      <nav className={`glass-panel flex items-center justify-between pointer-events-auto transition-all duration-500 ease-in-out relative z-50
-        ${isScrolled 
-          ? 'rounded-full h-12 md:h-14 px-6 w-[92%] max-w-xl md:max-w-2xl border-primary/20 shadow-[0_8px_32px_rgba(0,0,0,0.4)] bg-bg-surface/85 backdrop-blur-md' 
-          : 'rounded-[2rem] h-16 md:h-20 px-4 md:px-12 w-[90%] max-w-7xl border-border-main bg-bg-surface/25'
+    <>
+      <nav
+        className={`fixed inset-x-0 top-0 z-50 w-full flex items-center justify-between px-6 md:px-12 lg:px-20 transition-all duration-500 ease-out ${
+          isScrolled
+            ? 'h-14 bg-[#09090b]/80 backdrop-blur-xl border-b border-white/5'
+            : 'h-18 md:h-20 bg-transparent border-b border-transparent'
         }`}
       >
-        {/* Full Logo - Fades out & shrinks when scrolled */}
-        <div className={`transition-all duration-500 flex items-center overflow-hidden shrink-0
-          ${isScrolled ? 'w-0 opacity-0 pointer-events-none' : 'w-auto opacity-100 mr-4'}`}
+        {/* Left: Logo */}
+        <a
+          href="#"
+          onClick={handleScrollToTop}
+          className="flex items-center hover:opacity-70 transition-opacity duration-300 shrink-0"
         >
-          <a href="#" onClick={handleScrollToTop} className="flex items-center hover:opacity-80 transition-opacity">
-            <img 
-              src={logo} 
-              alt="Talha" 
-              className="h-11 md:h-12 w-auto transition-all duration-300 filter brightness-0 invert"
-            />
-          </a>
-        </div>
+          <img
+            src={logo}
+            alt="Talha"
+            className={`w-auto transition-all duration-500 filter brightness-0 invert ${
+              isScrolled ? 'h-7' : 'h-9 md:h-10'
+            }`}
+          />
+        </a>
 
-        {/* Small Icon Logo (Appears only when scrolled) */}
-        <div className={`transition-all duration-500 flex items-center overflow-hidden shrink-0
-          ${isScrolled ? 'w-auto opacity-100 mr-2 md:mr-4' : 'w-0 opacity-0 pointer-events-none'}`}
-        >
-          <a href="#" onClick={handleScrollToTop} className="flex items-center hover:opacity-80 transition-opacity">
-            <img 
-              src={logo} 
-              alt="Talha" 
-              className="h-8 md:h-9 w-auto transition-all duration-300 filter brightness-0 invert"
-            />
-          </a>
-        </div>
-
-        {/* Desktop Links */}
-        <div className={`hidden md:flex gap-6 lg:gap-8 items-center justify-center flex-grow transition-all duration-500
-          ${isScrolled ? 'md:gap-4' : 'md:gap-8'}`}
-        >
+        {/* Center: Desktop Links with animated underline */}
+        <div className="hidden md:flex items-center gap-1 lg:gap-2">
           {navLinks.map((link) => {
             const active = isLinkActive(link.path);
             return (
-              <a 
+              <a
                 key={link.path}
                 href={`#${link.path}`}
                 onClick={(e) => handleScrollTo(e, link.path)}
-                className={`relative px-4 py-1.5 rounded-full font-semibold transition-colors duration-300 capitalize cursor-pointer z-10 select-none
-                  ${active ? 'text-primary' : 'text-text-muted hover:text-text-main'}
-                  ${isScrolled ? 'text-[11px] px-3 py-1' : 'text-xs md:text-sm'}`}
+                className={`relative px-4 py-2 text-[13px] font-medium tracking-wide transition-colors duration-300 cursor-pointer select-none ${
+                  active ? 'text-text-main' : 'text-text-muted hover:text-text-main'
+                }`}
               >
+                {link.name}
                 {active && (
-                  <motion.span
-                    layoutId="activeNavBgDesktop"
-                    className="absolute inset-0 bg-primary/15 border border-primary/20 rounded-full -z-10"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  <motion.div
+                    layoutId="navUnderline"
+                    className="absolute bottom-0 left-2 right-2 h-[2px] bg-primary rounded-full"
+                    transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                   />
                 )}
-                <span className="relative z-10">{link.name}</span>
               </a>
             );
           })}
         </div>
 
-        {/* Desktop Social Icons (Balanced on the right side when scrolled) */}
-        <div className={`hidden md:flex items-center transition-all duration-500 shrink-0
-          ${isScrolled ? 'gap-2 ml-2' : 'gap-4 ml-4'}`}
-        >
-          <a 
-            href={portfolioData.profile.socials.github} 
-            target="_blank" 
-            rel="noreferrer" 
-            className="p-1.5 rounded-full text-text-muted hover:text-primary hover:bg-primary/10 border border-transparent hover:border-primary/20 transition-all duration-300 flex items-center justify-center cursor-pointer"
+        {/* Right: Socials + CTA */}
+        <div className="hidden md:flex items-center gap-3">
+          <a
+            href={portfolioData.profile.socials.github}
+            target="_blank"
+            rel="noreferrer"
+            className="p-2 text-text-muted hover:text-text-main transition-colors duration-300"
             title="GitHub"
           >
-            <FaGithub size={isScrolled ? 16 : 20} />
+            <FaGithub size={17} />
           </a>
-          <a 
-            href={portfolioData.profile.socials.linkedin} 
-            target="_blank" 
-            rel="noreferrer" 
-            className="p-1.5 rounded-full text-text-muted hover:text-primary hover:bg-primary/10 border border-transparent hover:border-primary/20 transition-all duration-300 flex items-center justify-center cursor-pointer"
+          <a
+            href={portfolioData.profile.socials.linkedin}
+            target="_blank"
+            rel="noreferrer"
+            className="p-2 text-text-muted hover:text-text-main transition-colors duration-300"
             title="LinkedIn"
           >
-            <FaLinkedin size={isScrolled ? 16 : 20} />
+            <FaLinkedin size={17} />
+          </a>
+          <a
+            href="#contact"
+            onClick={(e) => handleScrollTo(e, 'contact')}
+            className="inline-flex items-center gap-2 px-4 py-2 text-[12px] font-semibold uppercase tracking-widest text-text-main border border-white/10 rounded-lg hover:border-primary/40 hover:text-primary transition-all duration-300 cursor-pointer ml-1"
+          >
+            Let's Talk
+            <ArrowRight size={13} />
           </a>
         </div>
 
         {/* Mobile Toggle */}
-        <button 
-          className="md:hidden text-text-main hover:text-primary transition-colors z-50 shrink-0 ml-2 cursor-pointer"
+        <button
+          className="md:hidden text-text-main hover:text-primary transition-colors z-50 shrink-0 cursor-pointer p-2"
           onClick={() => setIsOpen(!isOpen)}
         >
-          {isOpen ? <X size={22} /> : <Menu size={22} />}
+          {isOpen ? (
+            <X size={22} />
+          ) : (
+            <div className="flex flex-col gap-[5px]">
+              <span className="block w-5 h-[1.5px] bg-current" />
+              <span className="block w-3.5 h-[1.5px] bg-current" />
+            </div>
+          )}
         </button>
       </nav>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu — Right Slide Panel */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="fixed inset-0 bg-bg-base/95 backdrop-blur-2xl z-40 md:hidden flex flex-col items-center justify-center pointer-events-auto"
-            style={{ height: '100vh' }}
-          >
-            <div className="flex flex-col items-center gap-6">
-              {navLinks.map((link, i) => {
-                const active = isLinkActive(link.path);
-                return (
-                  <motion.div
-                    key={link.path}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.08 }}
-                  >
-                    <a
-                      href={`#${link.path}`}
-                      onClick={(e) => handleScrollTo(e, link.path)}
-                      className={`relative px-8 py-2.5 rounded-full text-xl font-bold tracking-widest capitalize transition-all cursor-pointer block text-center z-10
-                        ${active ? 'text-primary' : 'text-text-main hover:text-primary'}`}
-                    >
-                      {active && (
-                        <motion.span
-                          layoutId="activeNavBgMobile"
-                          className="absolute inset-0 bg-primary/10 dark:bg-primary/15 border border-primary/25 dark:border-primary/20 rounded-full -z-10"
-                          transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                        />
-                      )}
-                      <span className="relative z-10">{link.name}</span>
-                    </a>
-                  </motion.div>
-                );
-              })}
-            </div>
-            
-            <motion.div 
+          <>
+            {/* Backdrop */}
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="mt-12 flex flex-col items-center gap-4"
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden"
+              onClick={() => setIsOpen(false)}
+            />
+
+            {/* Panel */}
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              className="fixed top-0 right-0 bottom-0 w-[280px] bg-[#09090b]/95 backdrop-blur-2xl z-50 md:hidden flex flex-col border-l border-white/5"
             >
-              <p className="text-xs font-bold text-text-muted tracking-[0.3em] uppercase">Connect with me</p>
-              <div className="flex gap-6 text-text-muted">
-                <a href={portfolioData.profile.socials.github} target="_blank" rel="noreferrer" className="hover:text-primary transition-colors">
-                  <FaGithub size={20} />
-                </a>
-                <a href={portfolioData.profile.socials.linkedin} target="_blank" rel="noreferrer" className="hover:text-primary transition-colors">
-                  <FaLinkedin size={20} />
-                </a>
+              {/* Panel Header */}
+              <div className="flex items-center justify-between px-6 h-18 border-b border-white/5">
+                <span className="text-xs font-bold text-text-muted uppercase tracking-[0.3em]">Menu</span>
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="p-2 text-text-muted hover:text-text-main transition-colors cursor-pointer"
+                >
+                  <X size={18} />
+                </button>
               </div>
-              <div className="h-[1px] w-12 bg-primary/30"></div>
+
+              {/* Panel Links */}
+              <div className="flex flex-col px-6 pt-8 gap-1">
+                {navLinks.map((link, i) => {
+                  const active = isLinkActive(link.path);
+                  return (
+                    <motion.a
+                      key={link.path}
+                      href={`#${link.path}`}
+                      onClick={(e) => handleScrollTo(e, link.path)}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1 + i * 0.06, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                      className={`py-3 text-lg font-semibold tracking-wide transition-colors cursor-pointer ${
+                        active ? 'text-primary' : 'text-text-main hover:text-primary'
+                      }`}
+                    >
+                      {link.name}
+                    </motion.a>
+                  );
+                })}
+              </div>
+
+              {/* Panel Footer */}
+              <div className="mt-auto px-6 pb-8 space-y-6">
+                <div className="h-px bg-white/5" />
+                <div className="flex items-center gap-4">
+                  <a href={portfolioData.profile.socials.github} target="_blank" rel="noreferrer" className="text-text-muted hover:text-primary transition-colors">
+                    <FaGithub size={18} />
+                  </a>
+                  <a href={portfolioData.profile.socials.linkedin} target="_blank" rel="noreferrer" className="text-text-muted hover:text-primary transition-colors">
+                    <FaLinkedin size={18} />
+                  </a>
+                </div>
+                <p className="text-[10px] font-medium text-text-muted/50 uppercase tracking-widest">
+                  © {new Date().getFullYear()} Muhammad Talha
+                </p>
+              </div>
             </motion.div>
-          </motion.div>
+          </>
         )}
       </AnimatePresence>
-    </div>
+    </>
   );
 };
 

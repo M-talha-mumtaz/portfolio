@@ -1,126 +1,148 @@
 import { motion } from 'framer-motion';
-import { Calendar, Briefcase, ChevronRight, Award } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+
+const experiences = [
+  {
+    role: 'Lead Full-Stack Developer',
+    company: 'Apex Digital Solutions',
+    period: '2023 — Present',
+    description:
+      'Architecting high-performance MERN web portals, booking engines, and dynamic administrator control boards. Driving system migrations that optimize data flow and query performance.',
+    achievements: [
+      'Migrated database queries reducing load times by 40%',
+      'Developed full stack appointment dispatch boards supporting 200+ daily sessions',
+      'Implemented Stripe checkouts and custom merchant webhook reconciliations',
+    ],
+  },
+  {
+    role: 'Mobile & Web Engineer',
+    company: 'Mentairo Application Group',
+    period: '2022 — 2023',
+    description:
+      'Collaborated on developing high-fidelity real-time mental health portals. Unified client cross-platform mobile systems with administrative web platforms.',
+    achievements: [
+      'Integrated Agora SDK real-time audio/video encrypted channels',
+      'Coordinated Flutter mobile app releases on Google Play Store',
+      'Built administrative telemetry dashboard in React for monitoring session state',
+    ],
+  },
+  {
+    role: 'Independent Web Developer',
+    company: 'Freelance Engineering',
+    period: '2021 — 2022',
+    description:
+      'Created premium digital portfolios, marketing landing pages, and automated e-commerce web templates for small business clients globally.',
+    achievements: [
+      'Shipped 15+ websites with custom CSS animations and responsive forms',
+      'Optimized frontend performance scoring 95+ on Lighthouse audits',
+      'Integrated headless CMS platforms (Strapi, Sanity) for modular client blogging',
+    ],
+  },
+];
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.12 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30, filter: 'blur(6px)' },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: 'blur(0px)',
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+  },
+};
 
 const ExperienceShowcase = () => {
-  const experiences = [
-    {
-      role: 'Lead Full-Stack Developer',
-      company: 'Apex Digital Solutions',
-      period: '2023 - Present',
-      description: 'Architecting high-performance MERN web portals, booking engines, and dynamic administrator control boards. Driving system migrations that optimize data flow and query performance.',
-      achievements: [
-        'Migrated database queries reducing load times by 40%',
-        'Developed full stack appointment dispatch boards supporting 200+ daily sessions',
-        'Implemented Stripe checkouts and custom merchant webhook reconciliations'
-      ]
-    },
-    {
-      role: 'Mobile & Web Engineer',
-      company: 'Mentairo Application Group',
-      period: '2022 - 2023',
-      description: 'Collaborated on developing high-fidelity real-time mental health portals. Unified client cross-platform mobile systems with administrative web platforms.',
-      achievements: [
-        'Integrated Agora SDK real-time audio/video encrypted channels',
-        'Coordinated Flutter mobile app releases on Google Play Store',
-        'Built administrative telemetry dashboard in React for monitoring session state'
-      ]
-    },
-    {
-      role: 'Independent Web Developer',
-      company: 'Freelance Engineering',
-      period: '2021 - 2022',
-      description: 'Created premium digital portfolios, marketing landing pages, and automated e-commerce web templates for small business clients globally.',
-      achievements: [
-        'Shipped 15+ websites with custom CSS animations and responsive forms',
-        'Optimized frontend performance scoring 95+ on Lighthouse audits',
-        'Integrated headless CMS platforms (Strapi, Sanity) for modular client blogging'
-      ]
-    }
-  ];
-
   return (
-    <section className="py-24 border-t border-border-main relative overflow-hidden" id="experience">
-      <div className="max-w-7xl mx-auto px-6">
-        
-        {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+    <section className="py-28 md:py-36 relative overflow-hidden" id="experience">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
+
+        {/* Section Header with Index */}
+        <div className="flex items-end gap-6 md:gap-10 mb-12 md:mb-16">
+          <motion.span
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="text-xs md:text-sm font-bold tracking-[0.25em] text-primary uppercase mb-3"
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="section-index leading-none"
           >
-            History
-          </motion.h2>
-          <motion.h3 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-3xl md:text-5xl font-extrabold text-text-main tracking-tight leading-tight"
-          >
-            Work Experience
-          </motion.h3>
+            05
+          </motion.span>
+          <div className="flex flex-col gap-2 pb-2">
+            <motion.span
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-[11px] font-bold text-primary uppercase tracking-[0.35em]"
+            >
+              Experience
+            </motion.span>
+            <motion.div
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="h-px w-24 bg-gradient-to-r from-primary to-transparent origin-left"
+            />
+          </div>
         </div>
 
-        {/* Experience List */}
-        <div className="max-w-4xl mx-auto space-y-8">
+        {/* Experience Items */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          className="max-w-5xl space-y-0"
+        >
           {experiences.map((exp, idx) => (
             <motion.div
               key={exp.role}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
-              className="glass-panel p-6 md:p-8 rounded-[2rem] border border-border-main hover:border-primary/20 hover-glow-shadow transition-all duration-300 group cursor-default"
+              variants={itemVariants}
+              className="group relative border-t border-white/[0.06] py-10 md:py-14 cursor-default"
             >
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-                {/* Role & Company */}
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-bg-base border border-border-main flex items-center justify-center text-primary group-hover:scale-105 transition-transform duration-300">
-                    <Briefcase size={20} />
-                  </div>
-                  <div>
-                    <h4 className="text-xl font-bold text-text-main group-hover:text-primary transition-colors">
-                      {exp.role}
-                    </h4>
-                    <p className="text-xs font-bold text-text-muted uppercase tracking-wider">
-                      {exp.company}
-                    </p>
-                  </div>
+              {/* Top Row: Role + Period */}
+              <div className="flex flex-col md:flex-row md:items-start justify-between gap-3 mb-4">
+                <div>
+                  <h4 className="text-lg md:text-xl font-bold text-text-main tracking-tight group-hover:text-primary transition-colors duration-300">
+                    {exp.role}
+                  </h4>
+                  <p className="text-xs font-semibold text-text-muted/60 uppercase tracking-[0.2em] mt-1">
+                    {exp.company}
+                  </p>
                 </div>
-
-                {/* Period */}
-                <div className="inline-flex items-center gap-2 text-xs font-bold text-text-muted uppercase tracking-widest px-4 py-2 bg-bg-base rounded-full border border-border-main h-fit">
-                  <Calendar size={12} className="text-primary" />
+                <span className="text-xs font-medium text-text-muted/50 uppercase tracking-wider whitespace-nowrap md:pt-1">
                   {exp.period}
-                </div>
+                </span>
               </div>
 
               {/* Description */}
-              <p className="text-text-muted text-sm leading-relaxed mb-6">
+              <p className="text-sm text-text-muted font-medium leading-relaxed mb-5 max-w-3xl">
                 {exp.description}
               </p>
 
-              {/* Accomplishments */}
-              <div className="space-y-3 border-t border-border-main pt-6">
-                <p className="text-[10px] font-bold text-text-muted uppercase tracking-[0.2em] mb-2 flex items-center gap-1.5">
-                  <Award size={12} className="text-primary" /> Key Achievements
-                </p>
-                <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  {exp.achievements.map((ach, i) => (
-                    <li key={i} className="text-xs text-text-muted flex items-start gap-2 font-medium">
-                      <ChevronRight size={14} className="text-primary shrink-0 mt-0.5" />
-                      <span>{ach}</span>
-                    </li>
-                  ))}
-                </ul>
+              {/* Achievements */}
+              <div className="flex flex-col gap-2">
+                {exp.achievements.map((ach, i) => (
+                  <div key={i} className="flex items-start gap-2.5 text-xs text-text-muted/70 font-medium">
+                    <ArrowRight size={12} className="text-primary shrink-0 mt-0.5" />
+                    <span>{ach}</span>
+                  </div>
+                ))}
               </div>
-
             </motion.div>
           ))}
-        </div>
 
+          {/* Bottom border */}
+          <div className="border-t border-white/[0.06]" />
+        </motion.div>
       </div>
     </section>
   );

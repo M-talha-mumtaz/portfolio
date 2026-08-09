@@ -1,26 +1,45 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { ArrowDown, Send, FolderGit2 } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 import pfpImage from '../assets/pfp.png';
 
+const firstNameLetters = "MUHAMMAD".split("");
+const lastNameLetters = "TALHA".split("");
+
+const nameContainerVariants = {
+  hidden: { opacity: 1 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.045,
+      delayChildren: 0.55,
+    },
+  },
+};
+
+const letterVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 35, 
+    filter: "blur(10px)",
+    scale: 0.9
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    filter: "blur(0px)",
+    scale: 1,
+    transition: { 
+      duration: 0.6, 
+      ease: [0.16, 1, 0.3, 1] 
+    } 
+  },
+};
+
 const HeroEditorial = () => {
   const { profile } = portfolioData;
   const containerRef = useRef(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-  // Mouse parallax motion for 3D depth
-  const handleMouseMove = (e) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    setMousePos({ x, y });
-  };
-
-  const handleMouseLeave = () => {
-    setMousePos({ x: 0, y: 0 });
-  };
 
   // Scroll parallax effects
   const { scrollYProgress } = useScroll({
@@ -35,8 +54,6 @@ const HeroEditorial = () => {
   return (
     <section
       ref={containerRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
       className="relative min-h-screen w-full flex flex-col justify-between pt-32 pb-16 px-6 md:px-12 lg:px-20 overflow-hidden select-none bg-[#09090b]"
       id="hero"
     >
@@ -46,20 +63,44 @@ const HeroEditorial = () => {
       {/* CENTRAL HERO CANVAS */}
       <div className="relative w-full max-w-7xl mx-auto flex-grow flex flex-col justify-between items-center z-10 my-auto">
         
-        {/* LAYER 1: MASSIVE NAME BEHIND SUBJECT (2 LINES ON MOBILE, SINGLE LINE ON DESKTOP) */}
+        {/* LAYER 1: MASSIVE NAME BEHIND SUBJECT WITH LETTER-BY-LETTER STAGGERED REVEAL */}
         <motion.div
           style={{ 
             y: textY,
-            x: mousePos.x * -20,
             opacity: opacityFade
           }}
-          transition={{ type: "spring", stiffness: 100, damping: 25 }}
           className="w-full flex justify-center items-center pointer-events-none z-0 mt-2 sm:mt-4 md:mt-8 overflow-visible"
         >
-          <h1 className="text-[17vw] sm:text-[14vw] md:text-[8vw] lg:text-[7.5vw] xl:text-[7vw] font-black uppercase tracking-tighter leading-[0.85] md:leading-none text-center select-none text-zinc-100/90 filter drop-shadow-[0_10px_35px_rgba(0,0,0,0.7)] flex flex-col md:flex-row md:whitespace-nowrap items-center justify-center md:gap-[0.25em]">
-            <span>MUHAMMAD</span>
-            <span>TALHA</span>
-          </h1>
+          <motion.h1
+            variants={nameContainerVariants}
+            initial="hidden"
+            animate="visible"
+            className="text-[17vw] sm:text-[14vw] md:text-[8vw] lg:text-[7.5vw] xl:text-[7vw] font-black uppercase tracking-tighter leading-[0.85] md:leading-none text-center select-none text-zinc-100/90 filter drop-shadow-[0_10px_35px_rgba(0,0,0,0.7)] flex flex-col md:flex-row md:whitespace-nowrap items-center justify-center md:gap-[0.25em]"
+          >
+            <span className="inline-flex overflow-hidden py-1">
+              {firstNameLetters.map((char, index) => (
+                <motion.span
+                  key={`fn-${index}`}
+                  variants={letterVariants}
+                  className="inline-block"
+                >
+                  {char}
+                </motion.span>
+              ))}
+            </span>
+
+            <span className="inline-flex overflow-hidden py-1">
+              {lastNameLetters.map((char, index) => (
+                <motion.span
+                  key={`ln-${index}`}
+                  variants={letterVariants}
+                  className="inline-block"
+                >
+                  {char}
+                </motion.span>
+              ))}
+            </span>
+          </motion.h1>
         </motion.div>
 
         {/* LAYER 2: EDITORIAL CONTENT & PORTRAIT OVERLAY */}
@@ -85,13 +126,11 @@ const HeroEditorial = () => {
             </div>
           </motion.div>
 
-          {/* Center Column: Portrait Image Integrated Seamlessly (order-1 on mobile, order-2 on desktop) */}
+          {/* Center Column: Portrait Image Integrated Seamlessly (Static position on mouse move) */}
           <motion.div
             style={{ 
-              y: imageY,
-              x: mousePos.x * 15,
+              y: imageY
             }}
-            transition={{ type: "spring", stiffness: 120, damping: 20 }}
             className="order-1 md:order-2 md:col-span-4 lg:col-span-6 flex justify-center items-end z-10"
           >
             <div className="relative w-[280px] sm:w-[340px] md:w-[400px] lg:w-[460px] flex items-end justify-center">
