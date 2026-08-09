@@ -11,7 +11,7 @@ const ProjectCard = ({ project }) => {
       viewport={{ once: true }}
       className="group glass-panel rounded-[2rem] hover:neon-border transition-all duration-300 overflow-hidden flex flex-col h-full"
     >
-      <div className="relative h-56 bg-dark-surface overflow-hidden flex items-center justify-center border-b border-white/5">
+      <div className="relative h-56 bg-dark-surface overflow-hidden flex items-center justify-center border-b border-border-main">
         {image ? (
           <>
             <div className="absolute inset-0 bg-gradient-to-t from-dark/80 to-transparent z-10"></div>
@@ -35,10 +35,10 @@ const ProjectCard = ({ project }) => {
       </div>
       
       <div className="p-6 md:p-8 flex-grow flex flex-col bg-white/5">
-        <h3 className="text-xl font-bold text-white mb-3 group-hover:text-primary transition-colors tracking-wide uppercase">
+        <h3 className="text-xl font-bold text-text-main mb-3 group-hover:text-primary transition-colors tracking-wide uppercase">
           {title}
         </h3>
-        <p className="text-gray-400 text-sm leading-relaxed mb-6 flex-grow">
+        <p className="text-text-muted text-sm leading-relaxed mb-6 flex-grow">
           {description}
         </p>
         
@@ -46,14 +46,14 @@ const ProjectCard = ({ project }) => {
           {tech.map((t) => (
             <span 
               key={t} 
-              className="bg-dark-surface text-gray-300 text-xs font-bold px-3 py-1.5 rounded-full border border-white/10 group-hover:border-primary/30 transition-colors"
+              className="bg-bg-surface text-text-muted text-xs font-bold px-3 py-1.5 rounded-full border border-border-main group-hover:border-primary/30 transition-colors"
             >
               {t}
             </span>
           ))}
         </div>
 
-        <div className="mt-auto pt-4 border-t border-white/5 flex items-center justify-between">
+        <div className="mt-auto pt-4 border-t border-border-main flex items-center justify-between">
           {link ? (
             <a 
               href={link} 
@@ -65,7 +65,7 @@ const ProjectCard = ({ project }) => {
               <ExternalLink size={16} className="group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
             </a>
           ) : status ? (
-            <span className="text-gray-500 font-bold text-sm uppercase tracking-widest flex items-center gap-2">
+            <span className="text-text-muted font-bold text-sm uppercase tracking-widest flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
               {status}
             </span>
