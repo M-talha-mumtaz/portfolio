@@ -31,7 +31,7 @@ const Footer = () => {
               Available for Opportunities
             </div>
             
-            <h2 className="text-3xl md:text-5xl font-extrabold text-text-main tracking-tight leading-tight font-[Outfit]">
+            <h2 className="text-3xl md:text-5xl font-extrabold text-text-main tracking-tight leading-tight font-display">
               Let's create something <br />
               <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
                 remarkable together.
@@ -110,7 +110,7 @@ const Footer = () => {
             </a>
             <span className="w-px h-4 bg-white/10 hidden md:block" />
             <span className="text-text-muted/80">
-              Muhammad Talha &mdash; Full Stack & Mobile Engineer
+              Talha Mumtaz &mdash; Full Stack & Mobile Engineer
             </span>
           </div>
 

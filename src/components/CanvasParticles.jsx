@@ -60,7 +60,7 @@ const CanvasParticles = () => {
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(167, 139, 250, ${p.alpha})`;
+        ctx.fillStyle = `rgba(220, 220, 230, ${p.alpha})`;
         ctx.fill();
       });
 

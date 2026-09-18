@@ -1,6 +1,6 @@
 export const portfolioData = {
   profile: {
-    name: 'Muhammad Talha',
+    name: 'Talha Mumtaz',
     title: 'MERN Stack Developer',
     role: 'Developer',
     availability: 'Available for projects',
@@ -33,6 +33,38 @@ export const portfolioData = {
       image: '/projects/salon.png',
       featured: true,
       link: 'https://apex-grooming-salon.vercel.app'
+    }
+  ],
+  experiences: [
+    {
+      id: 'netsol',
+      role: 'Full Stack Intern',
+      company: 'NETSOL Technologies',
+      period: 'Aug 2026 – Sept 2026',
+      type: 'Internship',
+      location: 'Lahore, Pakistan',
+      description: 'Engineered an end-to-end full stack web application embedded with AI/ML integration, bridging intelligent backend inference pipelines with high-performance responsive interfaces.',
+      highlights: [
+        'Architected full-stack web modules with integrated machine learning capabilities',
+        'Engineered responsive user workflows with real-time model inference feedback',
+        'Implemented robust backend endpoints with secure data validation and error handling'
+      ],
+      skills: ['Full Stack', 'AI/ML Integration', 'React', 'Node.js', 'Python', 'REST APIs']
+    },
+    {
+      id: 'ventrex',
+      role: 'Full Stack Intern',
+      company: 'Ventrex Technologies',
+      period: 'May 2026 – July 2026',
+      type: 'Internship',
+      location: 'Lahore, Pakistan',
+      description: 'Directed frontend engineering operations across client-facing web solutions, ensuring pixel-perfect responsive layouts and seamless interactive fidelity.',
+      highlights: [
+        'Developed and refined user-facing frontend components across production websites',
+        'Optimized cross-browser rendering speed and mobile responsiveness',
+        'Built reusable, maintainable UI components using modern frontend toolchains'
+      ],
+      skills: ['Frontend Engineering', 'React', 'JavaScript', 'Tailwind CSS', 'UI/UX Design', 'Responsive Web']
     }
   ],
   roles: [

@@ -134,7 +134,7 @@ const ContactTerminal = () => {
                   </motion.div>
 
                   <div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-text-main tracking-tight font-[Outfit]">
+                    <h3 className="text-2xl md:text-3xl font-bold text-text-main tracking-tight font-display">
                       Message delivered
                     </h3>
                     <p className="text-sm text-text-muted font-medium mt-2">
@@ -164,7 +164,7 @@ const ContactTerminal = () => {
                     initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-2xl md:text-4xl font-bold text-text-main tracking-tight font-[Outfit] leading-tight"
+                    className="text-2xl md:text-4xl font-bold text-text-main tracking-tight font-display leading-tight"
                   >
                     Have an idea?<br />
                     <span className="text-text-muted">Let's build it together.</span>
@@ -234,7 +234,7 @@ const ContactTerminal = () => {
                   <button
                     type="submit"
                     disabled={status === 'transmitting'}
-                    className="relative inline-flex items-center gap-3 px-8 py-4 bg-primary hover:bg-primary/90 text-zinc-950 font-bold text-sm uppercase tracking-widest rounded-xl shadow-[0_8px_24px_rgba(167,139,250,0.25)] hover:shadow-[0_12px_32px_rgba(167,139,250,0.4)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 cursor-pointer disabled:opacity-70 overflow-hidden group"
+                    className="relative inline-flex items-center gap-3 px-8 py-4 bg-primary hover:bg-primary/90 text-zinc-950 font-bold text-sm uppercase tracking-widest rounded-xl shadow-[0_8px_24px_rgba(200,200,210,0.25)] hover:shadow-[0_12px_32px_rgba(200,200,210,0.4)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 cursor-pointer disabled:opacity-70 overflow-hidden group"
                   >
                     {/* Shimmer */}
                     <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.3)_50%,transparent_100%)] -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />

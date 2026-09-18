@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, X } from 'lucide-react';
+import { ArrowUpRight, X } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import logo from '../assets/logo.png';
 import { portfolioData } from '../data/portfolioData';
@@ -12,10 +12,10 @@ const Navbar = () => {
 
   // IntersectionObserver to dynamically highlight navbar links during scrolling
   useEffect(() => {
-    const sections = ['hero', 'about', 'projects', 'skills', 'contact'];
+    const sections = ['hero', 'about', 'experience', 'projects', 'skills', 'contact'];
     const observerOptions = {
       root: null,
-      rootMargin: '-35% 0px -55% 0px',
+      rootMargin: '-30% 0px -50% 0px',
       threshold: 0,
     };
 
@@ -44,7 +44,7 @@ const Navbar = () => {
 
   // Listen to scroll to transform navbar
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 40);
+    const handleScroll = () => setIsScrolled(window.scrollY > 30);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -68,13 +68,14 @@ const Navbar = () => {
     setActiveSection('hero');
   };
 
-  // Prevent scrolling when menu is open
+  // Lock body scroll when mobile menu is active
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : 'unset';
   }, [isOpen]);
 
   const navLinks = [
     { name: 'Home', path: 'hero' },
+    { name: 'Experience', path: 'experience' },
     { name: 'Projects', path: 'projects' },
     { name: 'Skills', path: 'skills' },
     { name: 'Contact', path: 'contact' },
@@ -87,169 +88,209 @@ const Navbar = () => {
 
   return (
     <>
-      <nav
-        className={`fixed inset-x-0 top-0 z-50 w-full flex items-center justify-between px-6 md:px-12 lg:px-20 transition-all duration-500 ease-out ${
+      {/* ─── The Ledge: Full-Width Flush Navigation ─── */}
+      <header
+        className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ease-out ${
           isScrolled
-            ? 'h-14 bg-[#09090b]/80 backdrop-blur-xl border-b border-white/5'
-            : 'h-18 md:h-20 bg-transparent border-b border-transparent'
+            ? 'bg-[#09090b]/92 backdrop-blur-2xl shadow-[0_1px_0_rgba(255,255,255,0.06)]'
+            : 'bg-transparent'
         }`}
       >
-        {/* Left: Logo */}
-        <a
-          href="#"
-          onClick={handleScrollToTop}
-          className="flex items-center hover:opacity-70 transition-opacity duration-300 shrink-0"
-        >
-          <img
-            src={logo}
-            alt="Talha"
-            className={`w-auto transition-all duration-500 filter brightness-0 invert ${
-              isScrolled ? 'h-7' : 'h-9 md:h-10'
-            }`}
-          />
-        </a>
+        {/* Top Accent Gradient Line */}
+        <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-primary/70 to-transparent" />
 
-        {/* Center: Desktop Links with animated underline */}
-        <div className="hidden md:flex items-center gap-1 lg:gap-2">
-          {navLinks.map((link) => {
-            const active = isLinkActive(link.path);
-            return (
+        {/* Nav Content Strip */}
+        <nav className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 lg:px-16 flex items-center justify-between h-14 sm:h-16">
+          {/* ── Left: Logo ── */}
+          <a
+            href="#"
+            onClick={handleScrollToTop}
+            className="group flex items-center shrink-0 hover:opacity-80 transition-opacity duration-300 cursor-pointer select-none"
+          >
+            <img
+              src={logo}
+              alt="Talha Mumtaz"
+              className={`w-auto filter brightness-0 invert transition-all duration-500 group-hover:drop-shadow-[0_0_12px_rgba(200,200,210,0.65)] ${
+                isScrolled ? 'h-6 sm:h-7' : 'h-7 sm:h-8'
+              }`}
+            />
+          </a>
+
+          {/* ── Center: Navigation Links with Sliding Underline ── */}
+          <div className="hidden md:flex items-center gap-0">
+            {navLinks.map((link, i) => {
+              const active = isLinkActive(link.path);
+              return (
+                <Fragment key={link.path}>
+                  {i > 0 && (
+                    <span className="text-white/[0.12] mx-1 text-[5px] select-none">●</span>
+                  )}
+                  <a
+                    href={`#${link.path}`}
+                    onClick={(e) => handleScrollTo(e, link.path)}
+                    className={`relative px-4 py-2 text-[11px] font-semibold tracking-[0.18em] uppercase transition-colors duration-300 cursor-pointer select-none ${
+                      active ? 'text-white' : 'text-white/40 hover:text-white/80'
+                    }`}
+                  >
+                    {link.name}
+                    {active && (
+                      <motion.div
+                        layoutId="ledgeActiveUnderline"
+                        className="absolute bottom-0 left-4 right-4 h-[2px] rounded-full bg-gradient-to-r from-primary via-secondary to-primary/40"
+                        transition={{ type: 'spring', stiffness: 420, damping: 30 }}
+                      />
+                    )}
+                  </a>
+                </Fragment>
+              );
+            })}
+          </div>
+
+          {/* ── Right: Social + CTA ── */}
+          <div className="hidden md:flex items-center gap-5 shrink-0">
+            {/* Compact Social Icons */}
+            <div className="flex items-center gap-2.5">
               <a
-                key={link.path}
-                href={`#${link.path}`}
-                onClick={(e) => handleScrollTo(e, link.path)}
-                className={`relative px-4 py-2 text-[13px] font-medium tracking-wide transition-colors duration-300 cursor-pointer select-none ${
-                  active ? 'text-text-main' : 'text-text-muted hover:text-text-main'
-                }`}
+                href={portfolioData.profile.socials.github}
+                target="_blank"
+                rel="noreferrer"
+                className="text-white/30 hover:text-white/80 transition-colors duration-300 cursor-pointer"
+                title="GitHub"
               >
-                {link.name}
-                {active && (
-                  <motion.div
-                    layoutId="navUnderline"
-                    className="absolute bottom-0 left-2 right-2 h-[2px] bg-primary rounded-full"
-                    transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                  />
-                )}
+                <FaGithub size={15} />
               </a>
-            );
-          })}
-        </div>
-
-        {/* Right: Socials + CTA */}
-        <div className="hidden md:flex items-center gap-3">
-          <a
-            href={portfolioData.profile.socials.github}
-            target="_blank"
-            rel="noreferrer"
-            className="p-2 text-text-muted hover:text-text-main transition-colors duration-300"
-            title="GitHub"
-          >
-            <FaGithub size={17} />
-          </a>
-          <a
-            href={portfolioData.profile.socials.linkedin}
-            target="_blank"
-            rel="noreferrer"
-            className="p-2 text-text-muted hover:text-text-main transition-colors duration-300"
-            title="LinkedIn"
-          >
-            <FaLinkedin size={17} />
-          </a>
-          <a
-            href="#contact"
-            onClick={(e) => handleScrollTo(e, 'contact')}
-            className="inline-flex items-center gap-2 px-4 py-2 text-[12px] font-semibold uppercase tracking-widest text-text-main border border-white/10 rounded-lg hover:border-primary/40 hover:text-primary transition-all duration-300 cursor-pointer ml-1"
-          >
-            Let's Talk
-            <ArrowRight size={13} />
-          </a>
-        </div>
-
-        {/* Mobile Toggle */}
-        <button
-          className="md:hidden text-text-main hover:text-primary transition-colors z-50 shrink-0 cursor-pointer p-2"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {isOpen ? (
-            <X size={22} />
-          ) : (
-            <div className="flex flex-col gap-[5px]">
-              <span className="block w-5 h-[1.5px] bg-current" />
-              <span className="block w-3.5 h-[1.5px] bg-current" />
+              <a
+                href={portfolioData.profile.socials.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                className="text-white/30 hover:text-primary transition-colors duration-300 cursor-pointer"
+                title="LinkedIn"
+              >
+                <FaLinkedin size={15} />
+              </a>
             </div>
-          )}
-        </button>
-      </nav>
 
-      {/* Mobile Menu — Right Slide Panel */}
+            {/* Thin divider */}
+            <div className="w-px h-4 bg-white/10" />
+
+            {/* Text CTA */}
+            <a
+              href="#contact"
+              onClick={(e) => handleScrollTo(e, 'contact')}
+              className="group inline-flex items-center gap-1.5 text-[11px] font-bold tracking-[0.15em] uppercase text-primary hover:text-white transition-colors duration-300 cursor-pointer select-none"
+            >
+              <span>Let's Talk</span>
+              <ArrowUpRight
+                size={13}
+                className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
+            </a>
+          </div>
+
+          {/* ── Mobile Hamburger ── */}
+          <button
+            className="md:hidden p-2 text-white/50 hover:text-white transition-colors cursor-pointer"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle Navigation"
+          >
+            {isOpen ? (
+              <X size={22} />
+            ) : (
+              <div className="flex flex-col items-end gap-[5px]">
+                <span className="block w-5 h-[1.5px] bg-current rounded-full" />
+                <span className="block w-3.5 h-[1.5px] bg-primary rounded-full" />
+                <span className="block w-5 h-[1.5px] bg-current rounded-full" />
+              </div>
+            )}
+          </button>
+        </nav>
+      </header>
+
+      {/* ─── Mobile Dropdown Panel (Curtain from under nav) ─── */}
       <AnimatePresence>
         {isOpen && (
           <>
-            {/* Backdrop */}
+            {/* Dimmed Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.25 }}
               className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden"
               onClick={() => setIsOpen(false)}
             />
 
-            {/* Panel */}
+            {/* Dropdown Panel */}
             <motion.div
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-              className="fixed top-0 right-0 bottom-0 w-[280px] bg-[#09090b]/95 backdrop-blur-2xl z-50 md:hidden flex flex-col border-l border-white/5"
+              initial={{ opacity: 0, y: -12, scaleY: 0.96 }}
+              animate={{ opacity: 1, y: 0, scaleY: 1 }}
+              exit={{ opacity: 0, y: -8, scaleY: 0.97 }}
+              transition={{ type: 'spring', stiffness: 450, damping: 30 }}
+              style={{ transformOrigin: 'top' }}
+              className="fixed top-[calc(2px+3.5rem)] inset-x-0 z-50 md:hidden px-3 sm:px-5"
             >
-              {/* Panel Header */}
-              <div className="flex items-center justify-between px-6 h-18 border-b border-white/5">
-                <span className="text-xs font-bold text-text-muted uppercase tracking-[0.3em]">Menu</span>
-                <button
-                  onClick={() => setIsOpen(false)}
-                  className="p-2 text-text-muted hover:text-text-main transition-colors cursor-pointer"
-                >
-                  <X size={18} />
-                </button>
-              </div>
+              <div className="bg-[#0c0c0f]/98 backdrop-blur-2xl border border-white/[0.08] rounded-2xl overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.9)]">
+                {/* Links */}
+                <div className="p-4 flex flex-col gap-0.5">
+                  {navLinks.map((link, i) => {
+                    const active = isLinkActive(link.path);
+                    return (
+                      <motion.a
+                        key={link.path}
+                        href={`#${link.path}`}
+                        onClick={(e) => handleScrollTo(e, link.path)}
+                        initial={{ opacity: 0, x: -12 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.03 + i * 0.04, duration: 0.25 }}
+                        className={`flex items-center justify-between px-4 py-3.5 rounded-xl text-sm font-semibold tracking-wide transition-all cursor-pointer ${
+                          active
+                            ? 'text-white bg-white/[0.05] border-l-2 border-primary'
+                            : 'text-white/40 hover:text-white/80 hover:bg-white/[0.02] border-l-2 border-transparent'
+                        }`}
+                      >
+                        <div className="flex items-center gap-3.5">
+                          <span className="text-[10px] font-mono text-primary/50 w-4 tabular-nums">
+                            {String(i + 1).padStart(2, '0')}
+                          </span>
+                          <span>{link.name}</span>
+                        </div>
+                        {active && (
+                          <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_6px_rgba(200,200,210,0.8)]" />
+                        )}
+                      </motion.a>
+                    );
+                  })}
+                </div>
 
-              {/* Panel Links */}
-              <div className="flex flex-col px-6 pt-8 gap-1">
-                {navLinks.map((link, i) => {
-                  const active = isLinkActive(link.path);
-                  return (
-                    <motion.a
-                      key={link.path}
-                      href={`#${link.path}`}
-                      onClick={(e) => handleScrollTo(e, link.path)}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.1 + i * 0.06, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                      className={`py-3 text-lg font-semibold tracking-wide transition-colors cursor-pointer ${
-                        active ? 'text-primary' : 'text-text-main hover:text-primary'
-                      }`}
+                {/* Bottom: Social + CTA */}
+                <div className="px-4 pb-4 pt-2 border-t border-white/[0.06] flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <a
+                      href={portfolioData.profile.socials.github}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-white/30 hover:text-white/70 transition-colors"
                     >
-                      {link.name}
-                    </motion.a>
-                  );
-                })}
-              </div>
-
-              {/* Panel Footer */}
-              <div className="mt-auto px-6 pb-8 space-y-6">
-                <div className="h-px bg-white/5" />
-                <div className="flex items-center gap-4">
-                  <a href={portfolioData.profile.socials.github} target="_blank" rel="noreferrer" className="text-text-muted hover:text-primary transition-colors">
-                    <FaGithub size={18} />
-                  </a>
-                  <a href={portfolioData.profile.socials.linkedin} target="_blank" rel="noreferrer" className="text-text-muted hover:text-primary transition-colors">
-                    <FaLinkedin size={18} />
+                      <FaGithub size={16} />
+                    </a>
+                    <a
+                      href={portfolioData.profile.socials.linkedin}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-white/30 hover:text-primary transition-colors"
+                    >
+                      <FaLinkedin size={16} />
+                    </a>
+                  </div>
+                  <a
+                    href="#contact"
+                    onClick={(e) => handleScrollTo(e, 'contact')}
+                    className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.15em] text-primary hover:text-white transition-colors cursor-pointer"
+                  >
+                    <span>Let's Talk</span>
+                    <ArrowUpRight size={13} />
                   </a>
                 </div>
-                <p className="text-[10px] font-medium text-text-muted/50 uppercase tracking-widest">
-                  © {new Date().getFullYear()} Muhammad Talha
-                </p>
               </div>
             </motion.div>
           </>

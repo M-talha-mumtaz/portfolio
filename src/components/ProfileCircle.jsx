@@ -4,7 +4,7 @@ const ProfileCircle = ({ src, alt }) => {
   return (
     <div className="relative flex items-center justify-center w-[300px] h-[300px] md:w-[400px] md:h-[400px] lg:w-[480px] lg:h-[480px] select-none pointer-events-none">
       
-      {/* Outer Border Ring (Subtle purple thin outline) */}
+      {/* Outer Border Ring (Subtle silver thin outline) */}
       <motion.div 
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}

@@ -22,3 +22,37 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# AI Assistant & Skill Tooling
+.agent/
+.agents/
+.claude
+.codebuddy
+.codex
+.continue
+.cursor
+.gemini
+.kiro
+.opencode
+.qoder
+.roo
+.trae
+.windsurf
+.uipro
+skills/
+*.csv
+*.py
+*.pyc
+__pycache__/
+
+# Deanchor Files
+*deanchor*
+*DEANCHOR*
+DEANCHOR.md
+deanchor-codex.md
+
+# Rules & Prompts
+.clauderules
+.cursorrules
+PROMPT.md
+

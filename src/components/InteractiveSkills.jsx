@@ -88,42 +88,42 @@ const SkillCard = ({ skill }) => {
       variants={cardVariants}
       whileHover={{ y: -5, scale: 1.02 }}
       transition={{ duration: 0.3, ease: 'easeOut' }}
-      className="group relative bg-[#121215]/80 hover:bg-[#18181e] border border-white/[0.07] hover:border-white/[0.18] rounded-2xl p-5 overflow-hidden transition-colors duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.4)] cursor-default flex flex-col justify-between"
+      className="group relative bg-[#16161c] md:bg-[#121215]/80 hover:bg-[#18181e] border border-white/[0.14] md:border-white/[0.07] hover:border-white/[0.18] rounded-2xl p-4 sm:p-5 overflow-hidden transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.4)] cursor-default flex flex-col justify-between"
     >
-      {/* Brand Ambient Radial Glow on Hover */}
+      {/* Brand Ambient Radial Glow (Always subtle on mobile, hover-activated on desktop) */}
       <div
-        className="absolute -top-12 -right-12 w-32 h-32 rounded-full blur-2xl opacity-0 group-hover:opacity-25 transition-opacity duration-500 pointer-events-none"
+        className="absolute -top-10 -right-10 w-28 h-28 sm:w-32 sm:h-32 rounded-full blur-2xl opacity-20 md:opacity-0 md:group-hover:opacity-25 transition-opacity duration-500 pointer-events-none"
         style={{ backgroundColor: skill.color }}
       />
 
       {/* Top Row: Icon Container + Tag */}
-      <div className="flex items-center justify-between mb-4 relative z-10">
+      <div className="flex items-center justify-between mb-3 sm:mb-4 relative z-10">
         <div
-          className="w-11 h-11 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 shadow-inner"
+          className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white/[0.06] md:bg-white/[0.04] border border-white/15 md:border-white/10 flex items-center justify-center transition-transform duration-300 scale-105 md:scale-100 md:group-hover:scale-110 shadow-inner"
           style={{ '--brand-color': skill.color }}
         >
           {IconComponent && (
             <IconComponent
-              className="w-5 h-5 text-text-muted transition-colors duration-300 group-hover:text-[var(--brand-color)] filter drop-shadow"
+              className="w-5 h-5 text-[var(--brand-color)] md:text-text-muted transition-colors duration-300 md:group-hover:text-[var(--brand-color)] filter drop-shadow"
             />
           )}
         </div>
 
-        <span className="text-[10px] font-semibold tracking-wider uppercase text-text-muted/50 px-2.5 py-1 rounded-full border border-white/5 bg-white/[0.02] group-hover:text-text-muted transition-colors">
+        <span className="text-[9px] sm:text-[10px] font-semibold tracking-wider uppercase text-text-muted/80 md:text-text-muted/50 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full border border-white/10 md:border-white/5 bg-white/[0.04] md:bg-white/[0.02] md:group-hover:text-text-muted transition-colors">
           {skill.tag}
         </span>
       </div>
 
       {/* Bottom Row: Name */}
       <div className="relative z-10 mt-2">
-        <h4 className="text-base font-bold text-text-main group-hover:text-primary transition-colors duration-300 font-[Outfit]">
+        <h4 className="text-sm sm:text-base font-bold text-text-main group-hover:text-primary transition-colors duration-300 font-display">
           {skill.name}
         </h4>
       </div>
 
-      {/* Subtle Bottom Accent Line on Hover */}
+      {/* Subtle Bottom Accent Line (Always active on mobile, hover-activated on desktop) */}
       <div
-        className="absolute bottom-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        className="absolute bottom-0 left-0 right-0 h-[2px] opacity-80 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300"
         style={{ background: `linear-gradient(90deg, ${skill.color}, transparent)` }}
       />
     </motion.div>
@@ -171,7 +171,7 @@ const InteractiveSkills = () => {
                 transition={{ duration: 0.5, delay: catIdx * 0.08 }}
                 className="mb-6 flex flex-col md:flex-row md:items-baseline justify-between gap-1 border-b border-white/[0.05] pb-3"
               >
-                <h3 className="text-lg md:text-xl font-bold text-text-main tracking-tight font-[Outfit]">
+                <h3 className="text-lg md:text-xl font-bold text-text-main tracking-tight font-display">
                   {cat.title}
                 </h3>
                 <span className="text-xs font-medium text-text-muted/50 tracking-wide">

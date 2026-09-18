@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #a78bfa;
-  --color-secondary: #c084fc;
-  --color-accent: #8b5cf6;
+  --color-primary: #a0a0ab;
+  --color-secondary: #737380;
+  --color-accent: #d4d4dc;
   --color-text-main: #fafafa;
   --color-text-muted: #a1a1aa;
   --color-bg-base: #09090b;
   --color-bg-surface: #18181b;
   
-  --font-sans: 'Space Grotesk', sans-serif;
-  --font-display: 'Outfit', sans-serif;
+  --font-sans: 'DM Sans', sans-serif;
+  --font-display: 'Bricolage Grotesque', sans-serif;
 }
 
 :root {
@@ -21,13 +21,13 @@
   --text-muted: #a1a1aa;
   --border-main: rgba(250, 250, 250, 0.08);
   
-  --primary-color: #a78bfa;      /* Light Violet */
-  --secondary-color: #c084fc;    /* Light Purple */
-  --accent-color: #8b5cf6;       /* Bright Violet */
+  --primary-color: #a0a0ab;      /* Silver Grey */
+  --secondary-color: #737380;    /* Mid Grey */
+  --accent-color: #d4d4dc;       /* Light Silver */
   
   --grid-color: rgba(250, 250, 250, 0.02);
-  --glow-color-1: rgba(167, 139, 250, 0.08);
-  --glow-color-2: rgba(192, 132, 252, 0.05);
+  --glow-color-1: rgba(200, 200, 210, 0.06);
+  --glow-color-2: rgba(160, 160, 171, 0.04);
 }
 
 .dark {
@@ -38,17 +38,17 @@
   --text-muted: #a1a1aa;
   --border-main: rgba(250, 250, 250, 0.08);
   
-  --primary-color: #a78bfa;
-  --secondary-color: #c084fc;
-  --accent-color: #8b5cf6;
+  --primary-color: #a0a0ab;
+  --secondary-color: #737380;
+  --accent-color: #d4d4dc;
   
   --grid-color: rgba(250, 250, 250, 0.02);
-  --glow-color-1: rgba(167, 139, 250, 0.08);
-  --glow-color-2: rgba(192, 132, 252, 0.05);
+  --glow-color-1: rgba(200, 200, 210, 0.06);
+  --glow-color-2: rgba(160, 160, 171, 0.04);
 }
 
 body {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   color: var(--text-main);
   background-color: var(--bg-base);
   min-height: 100vh;
@@ -91,17 +91,17 @@ body {
 
 /* Custom Glow Accents */
 .neon-text {
-  text-shadow: 0 0 12px rgba(167, 139, 250, 0.35);
+  text-shadow: 0 0 12px rgba(200, 200, 210, 0.35);
 }
 
 .neon-border {
-  box-shadow: 0 15px 35px -12px rgba(167, 139, 250, 0.22), 0 0 15px rgba(167, 139, 250, 0.08);
-  border-color: rgba(167, 139, 250, 0.35) !important;
+  box-shadow: 0 15px 35px -12px rgba(200, 200, 210, 0.22), 0 0 15px rgba(200, 200, 210, 0.08);
+  border-color: rgba(200, 200, 210, 0.35) !important;
 }
 
 .neon-border-purple {
-  box-shadow: 0 15px 35px -12px rgba(192, 132, 252, 0.22), 0 0 15px rgba(192, 132, 252, 0.08);
-  border-color: rgba(192, 132, 252, 0.35) !important;
+  box-shadow: 0 15px 35px -12px rgba(160, 160, 171, 0.22), 0 0 15px rgba(160, 160, 171, 0.08);
+  border-color: rgba(160, 160, 171, 0.35) !important;
 }
 
 .hover-glow-shadow {
@@ -109,7 +109,7 @@ body {
 }
 
 .hover-glow-shadow:hover {
-  box-shadow: 0 15px 30px -12px rgba(167, 139, 250, 0.18), 0 0 15px rgba(167, 139, 250, 0.06);
+  box-shadow: 0 15px 30px -12px rgba(200, 200, 210, 0.18), 0 0 15px rgba(200, 200, 210, 0.06);
 }
 
 /* Shimmer Sweep Animation */
@@ -123,7 +123,7 @@ body {
 
 /* Section Index — oversized faded number for editorial anchoring */
 .section-index {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-weight: 800;
   font-size: clamp(4rem, 8vw, 7rem);
   line-height: 1;
@@ -142,7 +142,7 @@ body {
   width: 100%;
   color: var(--text-main);
   font-size: 0.95rem;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   transition: border-color 0.35s ease;
   outline: none;
 }

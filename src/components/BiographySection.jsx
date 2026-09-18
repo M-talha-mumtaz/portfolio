@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import aboutImage from '../assets/about.png';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -51,30 +52,62 @@ const BiographySection = () => {
           />
         </div>
 
-        {/* Editorial Paragraph */}
-        <motion.p
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-80px' }}
-          className="text-xl md:text-2xl lg:text-3xl text-text-muted font-medium leading-relaxed md:leading-loose max-w-4xl"
-        >
-          {words.map((word, i) => {
-            const highlights = ['MERN', 'Flutter', 'Dart'];
-            const isHighlighted = highlights.some((h) => word.includes(h));
-            return (
-              <motion.span
-                key={i}
-                variants={wordVariants}
-                className={`inline-block mr-[0.3em] ${
-                  isHighlighted ? 'text-text-main font-bold' : ''
-                }`}
-              >
-                {word}
-              </motion.span>
-            );
-          })}
-        </motion.p>
+        {/* Two-Column Grid: Text + Portrait */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+
+          {/* Text Column */}
+          <div className="lg:col-span-7">
+            <motion.p
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-80px' }}
+              className="text-xl md:text-2xl lg:text-3xl text-text-muted font-medium leading-relaxed md:leading-loose"
+            >
+              {words.map((word, i) => {
+                const highlights = ['MERN', 'Flutter', 'Dart'];
+                const isHighlighted = highlights.some((h) => word.includes(h));
+                return (
+                  <motion.span
+                    key={i}
+                    variants={wordVariants}
+                    className={`inline-block mr-[0.3em] ${
+                      isHighlighted ? 'text-text-main font-bold' : ''
+                    }`}
+                  >
+                    {word}
+                  </motion.span>
+                );
+              })}
+            </motion.p>
+          </div>
+
+          {/* Image Column */}
+          <motion.div
+            initial={{ opacity: 0, y: 30, scale: 0.97 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5"
+          >
+            <div className="relative group">
+              {/* Image Container */}
+              <div className="relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-[0_20px_50px_-15px_rgba(0,0,0,0.6)]">
+                <img
+                  src={aboutImage}
+                  alt="Talha Mumtaz"
+                  className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                />
+                {/* Subtle bottom gradient for blending */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#09090b]/30 via-transparent to-transparent pointer-events-none" />
+              </div>
+
+              {/* Decorative corner accent */}
+              <div className="absolute -bottom-3 -right-3 w-16 h-16 border-r-2 border-b-2 border-primary/25 rounded-br-2xl pointer-events-none" />
+              <div className="absolute -top-3 -left-3 w-16 h-16 border-l-2 border-t-2 border-primary/25 rounded-tl-2xl pointer-events-none" />
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
