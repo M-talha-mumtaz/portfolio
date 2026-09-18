@@ -2,7 +2,7 @@ import { useState, useEffect, Fragment } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, X } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
-import logo from '../assets/logo.png';
+import logo from '../assets/logo.webp';
 import { portfolioData } from '../data/portfolioData';
 
 const Navbar = () => {
@@ -110,6 +110,8 @@ const Navbar = () => {
             <img
               src={logo}
               alt="Talha Mumtaz"
+              loading="eager"
+              decoding="async"
               className={`w-auto filter brightness-0 invert transition-all duration-500 group-hover:drop-shadow-[0_0_12px_rgba(200,200,210,0.65)] ${
                 isScrolled ? 'h-6 sm:h-7' : 'h-7 sm:h-8'
               }`}

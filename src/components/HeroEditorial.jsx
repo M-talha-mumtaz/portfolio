@@ -2,7 +2,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { ArrowDown, Send, FolderGit2, Download } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
-import pfpImage from '../assets/pfp.png';
+import pfpImage from '../assets/pfp.webp';
 
 const firstNameLetters = "TALHA".split("");
 const lastNameLetters = "MUMTAZ".split("");
@@ -120,6 +120,9 @@ const HeroEditorial = () => {
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 src={pfpImage}
                 alt={profile.name}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
                 style={{
                   WebkitMaskImage: 'linear-gradient(to bottom, black 95%, black 100%)',
                   maskImage: 'linear-gradient(to bottom, black 95%, black 100%)'

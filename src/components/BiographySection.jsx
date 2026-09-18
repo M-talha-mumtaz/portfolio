@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import aboutImage from '../assets/about.png';
+import aboutImage from '../assets/about.webp';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -96,6 +96,8 @@ const BiographySection = () => {
                 <img
                   src={aboutImage}
                   alt="Talha Mumtaz"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                 />
                 {/* Subtle bottom gradient for blending */}

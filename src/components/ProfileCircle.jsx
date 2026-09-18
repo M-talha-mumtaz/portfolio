@@ -37,6 +37,7 @@ const ProfileCircle = ({ src, alt }) => {
           <img 
             src={src} 
             alt={alt} 
+            decoding="async"
             className="w-full h-full object-cover transition-all duration-350 ease-in-out"
           />
         ) : (

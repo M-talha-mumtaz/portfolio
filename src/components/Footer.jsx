@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Mail, FileText } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
-import logo from '../assets/logo.png';
+import logo from '../assets/logo.webp';
 import { portfolioData } from '../data/portfolioData';
 
 const Footer = () => {
@@ -106,7 +106,7 @@ const Footer = () => {
           {/* Logo & Title */}
           <div className="flex items-center gap-4">
             <a href="#" onClick={handleScrollToTop} className="hover:opacity-70 transition-opacity">
-              <img src={logo} alt="Talha" className="h-7 w-auto filter brightness-0 invert" />
+              <img src={logo} alt="Talha" loading="lazy" decoding="async" className="h-7 w-auto filter brightness-0 invert" />
             </a>
             <span className="w-px h-4 bg-white/10 hidden md:block" />
             <span className="text-text-muted/80">

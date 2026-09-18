@@ -21,7 +21,7 @@ export const portfolioData = {
       title: 'MENTAIRO',
       description: 'Mental health platform with secure real-time video consultations.',
       tech: ['Flutter', 'Agora SDK', 'Dart'],
-      image: '/projects/mentairo.png',
+      image: '/projects/mentairo.webp',
       featured: true,
       status: 'Web version coming soon'
     },
@@ -30,7 +30,7 @@ export const portfolioData = {
       title: 'Salon Web App',
       description: 'A modern web application for a salon, featuring service booking, secure admin dashboard, and responsive design.',
       tech: ['React', 'Node.js', 'MongoDB', 'Tailwind CSS'],
-      image: '/projects/salon.png',
+      image: '/projects/salon.webp',
       featured: true,
       link: 'https://apex-grooming-salon.vercel.app'
     }

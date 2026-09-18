@@ -33,6 +33,8 @@ const ProjectCard = ({ project, index }) => {
         <img
           src={project.image}
           alt={project.title}
+          loading="lazy"
+          decoding="async"
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105 filter brightness-[0.35] group-hover:brightness-[0.25]"
         />
       ) : (

@@ -145,6 +145,7 @@ const TiltAvatar = ({ src, alt }) => {
           src={src} 
           alt={alt} 
           loading="lazy"
+          decoding="async"
           style={{
             rotateX: photoRotateX,
             rotateY: photoRotateY,
@@ -162,6 +163,7 @@ const TiltAvatar = ({ src, alt }) => {
           src={src} 
           alt={alt} 
           loading="lazy"
+          decoding="async"
           style={{
             rotateX: photoRotateX,
             rotateY: photoRotateY,

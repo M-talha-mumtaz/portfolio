@@ -4,7 +4,9 @@ import tailwindcss from '@tailwindcss/vite'
 import fs from 'fs'
 
 try {
-  fs.copyFileSync('src/assets/logo.png', 'public/favicon.png')
+  if (fs.existsSync('src/assets/logo.webp')) {
+    fs.copyFileSync('src/assets/logo.webp', 'public/favicon.webp')
+  }
 } catch (err) {
   console.error('Failed to copy logo to favicon:', err)
 }
