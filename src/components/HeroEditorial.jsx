@@ -54,7 +54,7 @@ const HeroEditorial = () => {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[92vh] lg:h-screen w-full flex flex-col justify-between pt-16 sm:pt-20 md:pt-22 pb-6 sm:pb-10 px-6 md:px-12 lg:px-20 overflow-hidden select-none bg-[#09090b]"
+      className="relative min-h-[90vh] md:min-h-[92vh] lg:h-screen w-full flex flex-col justify-between pt-14 sm:pt-18 md:pt-22 pb-4 sm:pb-8 md:pb-10 px-5 sm:px-8 md:px-12 lg:px-20 overflow-hidden select-none bg-[#09090b]"
       id="hero"
     >
       {/* Subtle Full-Canvas Ambient Background Glow */}
@@ -69,13 +69,13 @@ const HeroEditorial = () => {
             y: textY,
             opacity: opacityFade
           }}
-          className="w-full flex justify-center items-center pointer-events-none z-0 mt-2 sm:mt-4 md:mt-6 overflow-visible"
+          className="w-full flex justify-center items-center pointer-events-none z-0 mt-1 sm:mt-3 md:mt-6 overflow-visible"
         >
           <motion.h1
             variants={nameContainerVariants}
             initial="hidden"
             animate="visible"
-            className="text-[17vw] sm:text-[14vw] md:text-[8.5vw] lg:text-[7.8vw] xl:text-[7.2vw] font-black uppercase tracking-tighter leading-[0.85] md:leading-none text-center select-none text-zinc-100/90 filter drop-shadow-[0_10px_35px_rgba(0,0,0,0.7)] flex flex-col md:flex-row md:whitespace-nowrap items-center justify-center md:gap-[0.25em]"
+            className="text-[16vw] sm:text-[14vw] md:text-[8.5vw] lg:text-[7.8vw] xl:text-[7.2vw] font-black uppercase tracking-tighter leading-[0.82] md:leading-none text-center select-none text-zinc-100/90 filter drop-shadow-[0_10px_35px_rgba(0,0,0,0.7)] flex flex-col md:flex-row md:whitespace-nowrap items-center justify-center md:gap-[0.25em]"
           >
             <span className="inline-flex overflow-hidden py-1">
               {firstNameLetters.map((char, index) => (
@@ -104,16 +104,16 @@ const HeroEditorial = () => {
         </motion.div>
 
         {/* LAYER 2: EDITORIAL CONTENT & PORTRAIT OVERLAY */}
-        <div className="relative w-full grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 items-end mt-4 md:mt-[-12vw] lg:mt-[-11vw] xl:mt-[-10.5vw] z-10 overflow-visible">
+        <div className="relative w-full grid grid-cols-1 md:grid-cols-12 gap-y-0 gap-x-4 md:gap-6 items-end mt-2 sm:mt-4 md:mt-[-12vw] lg:mt-[-11vw] xl:mt-[-10.5vw] z-10 overflow-visible">
           
-          {/* Center Column: Portrait Image (order-1 on mobile, order-2 on desktop. Full head visible over title, suit flush to bottom line) */}
+          {/* Center Column: Portrait Image (order-1 on mobile, order-2 on desktop. Head overlaps title, suit flush directly against breaker line) */}
           <motion.div
             style={{ 
               y: imageY
             }}
-            className="order-1 md:order-2 md:col-span-4 lg:col-span-6 flex justify-center items-end z-10 overflow-visible mt-[-10vw] sm:mt-[-8vw] md:mt-0 mb-0"
+            className="order-1 md:order-2 md:col-span-4 lg:col-span-6 flex justify-center items-end z-10 overflow-visible mt-[-20vw] sm:mt-[-15vw] md:mt-0 mb-0 pb-0"
           >
-            <div className="relative w-[300px] sm:w-[380px] md:w-[440px] lg:w-[490px] xl:w-[540px] flex items-end justify-center overflow-visible">
+            <div className="relative w-[280px] sm:w-[360px] md:w-[440px] lg:w-[490px] xl:w-[540px] flex items-end justify-center overflow-visible">
               <motion.img
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -121,10 +121,10 @@ const HeroEditorial = () => {
                 src={pfpImage}
                 alt={profile.name}
                 style={{
-                  WebkitMaskImage: 'radial-gradient(ellipse 90% 90% at 50% 50%, black 80%, transparent 100%)',
-                  maskImage: 'radial-gradient(ellipse 90% 90% at 50% 50%, black 80%, transparent 100%)'
+                  WebkitMaskImage: 'linear-gradient(to bottom, black 95%, black 100%)',
+                  maskImage: 'linear-gradient(to bottom, black 95%, black 100%)'
                 }}
-                className="w-full h-auto max-h-[62vh] sm:max-h-[66vh] md:max-h-[68vh] object-contain object-bottom relative z-10"
+                className="w-full h-auto max-h-[46vh] sm:max-h-[54vh] md:max-h-[68vh] object-contain object-bottom relative z-10 block"
               />
             </div>
           </motion.div>
@@ -132,7 +132,7 @@ const HeroEditorial = () => {
           {/* Left Column: Status Badge & Bio (order-2 on mobile under portrait ending line, order-1 on desktop) */}
           <motion.div 
             style={{ opacity: opacityFade }}
-            className="order-2 md:order-1 md:col-span-4 lg:col-span-3 text-left space-y-3.5 z-20 pb-4 sm:pb-6 md:pb-8 mt-0 md:mt-0 pt-4 md:pt-0 border-t border-white/10 md:border-t-0"
+            className="order-2 md:order-1 md:col-span-4 lg:col-span-3 text-left space-y-2.5 sm:space-y-3.5 z-20 pb-3 sm:pb-6 md:pb-8 mt-0 md:mt-0 pt-3 sm:pt-4 md:pt-0 border-t border-white/10 md:border-t-0"
           >
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-900/90 border border-white/10 text-[11px] font-mono font-semibold text-text-muted backdrop-blur-md shadow-md">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
@@ -164,7 +164,7 @@ const HeroEditorial = () => {
       {/* FOOTER ACTIONS BAR */}
       <motion.div 
         style={{ opacity: opacityFade }}
-        className="w-full max-w-7xl mx-auto z-30 pt-4 sm:pt-5 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4"
+        className="w-full max-w-7xl mx-auto z-30 pt-3 sm:pt-5 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4"
       >
         {/* Copyright / Role */}
         <div className="text-xs font-mono text-text-muted flex items-center gap-2">
