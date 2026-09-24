@@ -87,7 +87,7 @@ const ContactTerminal = () => {
 
   return (
     <section className="py-28 md:py-36 relative overflow-hidden" id="contact">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
+      <div className="w-full px-5 sm:px-8 md:px-10 lg:px-14">
 
         {/* Section Header */}
         <div className="flex items-center gap-4 mb-16 md:mb-20">

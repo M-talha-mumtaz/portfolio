@@ -34,7 +34,7 @@ const experienceMeta = {
     badge: 'Frontend Systems',
     accentColor: 'rgba(180, 180, 195, 0.9)',
     deliverables: [
-      { label: 'UI/UX Fidelity', detail: 'Delivered pixel-perfect responsive web solutions from complex Figma designs.' },
+      { label: 'Interface Engineering', detail: 'Delivered high-performance, pixel-perfect responsive web solutions across all viewport sizes.' },
       { label: 'Performance Tuning', detail: 'Streamlined client-side rendering speed, asset bundles, and mobile smoothness.' },
       { label: 'Reusable Toolkits', detail: 'Engineered clean, modular UI components to standardize production code.' },
     ],
@@ -57,7 +57,7 @@ const ExperienceTimeline = () => {
       <div className="absolute top-1/3 left-1/4 -translate-y-1/2 w-96 h-96 bg-primary/[0.04] rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-white/[0.02] rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 relative z-10">
+      <div className="w-full px-5 sm:px-8 md:px-10 lg:px-14 relative z-10">
         
         {/* Section Header */}
         <div className="flex items-center gap-4 mb-4">

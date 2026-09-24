@@ -202,3 +202,73 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--text-muted);
 }
+
+/* Orbit Animations */
+@keyframes orbit-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes orbit-counter-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+@keyframes orbit-spin-reverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+@keyframes orbit-counter-spin-reverse {
+  from { transform: rotate(-360deg); }
+  to { transform: rotate(0deg); }
+}
+
+.animate-orbit-1 {
+  animation: orbit-spin calc(26s * var(--orbit-speed, 1)) linear infinite;
+}
+.animate-orbit-counter-1 {
+  animation: orbit-counter-spin calc(26s * var(--orbit-speed, 1)) linear infinite;
+}
+
+.animate-orbit-2 {
+  animation: orbit-spin-reverse calc(34s * var(--orbit-speed, 1)) linear infinite;
+}
+.animate-orbit-counter-2 {
+  animation: orbit-counter-spin-reverse calc(34s * var(--orbit-speed, 1)) linear infinite;
+}
+
+.animate-orbit-3 {
+  animation: orbit-spin calc(42s * var(--orbit-speed, 1)) linear infinite;
+}
+.animate-orbit-counter-3 {
+  animation: orbit-counter-spin calc(42s * var(--orbit-speed, 1)) linear infinite;
+}
+
+.animate-orbit-4 {
+  animation: orbit-spin-reverse calc(50s * var(--orbit-speed, 1)) linear infinite;
+}
+.animate-orbit-counter-4 {
+  animation: orbit-counter-spin-reverse calc(50s * var(--orbit-speed, 1)) linear infinite;
+}
+
+.animate-orbit-5 {
+  animation: orbit-spin calc(58s * var(--orbit-speed, 1)) linear infinite;
+}
+.animate-orbit-counter-5 {
+  animation: orbit-counter-spin calc(58s * var(--orbit-speed, 1)) linear infinite;
+}
+
+.orbit-paused, .orbit-paused * {
+  animation-play-state: paused !important;
+}
+
+/* 3D Perspective & Spatial Setup */
+.perspective-stage {
+  perspective: 1400px;
+  perspective-origin: center center;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}

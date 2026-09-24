@@ -54,14 +54,14 @@ const HeroEditorial = () => {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[90vh] md:min-h-[92vh] lg:h-screen w-full flex flex-col justify-between pt-14 sm:pt-18 md:pt-22 pb-4 sm:pb-8 md:pb-10 px-5 sm:px-8 md:px-12 lg:px-20 overflow-hidden select-none bg-[#09090b]"
+      className="relative min-h-[90vh] md:min-h-[92vh] lg:h-screen w-full flex flex-col justify-between pt-14 sm:pt-18 md:pt-22 pb-4 sm:pb-8 md:pb-10 px-5 sm:px-8 md:px-10 lg:px-14 overflow-hidden select-none bg-[#09090b]"
       id="hero"
     >
       {/* Subtle Full-Canvas Ambient Background Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[600px] bg-[radial-gradient(ellipse_at_top,rgba(200,200,210,0.10)_0%,rgba(9,9,11,0)_70%)] pointer-events-none z-0" />
 
       {/* CENTRAL HERO CANVAS */}
-      <div className="relative w-full max-w-7xl mx-auto flex-grow flex flex-col justify-between items-center z-10 my-auto overflow-hidden">
+      <div className="relative w-full flex-grow flex flex-col justify-between items-center z-10 my-auto overflow-hidden">
         
         {/* LAYER 1: MASSIVE NAME BEHIND SUBJECT WITH LETTER-BY-LETTER STAGGERED REVEAL */}
         <motion.div
@@ -144,10 +144,10 @@ const HeroEditorial = () => {
 
             <div className="space-y-1.5">
               <p className="text-[11px] font-mono font-bold text-primary uppercase tracking-widest flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-primary" /> [ FULL-STACK & MOBILE ]
+                <span className="w-1.5 h-1.5 rounded-full bg-primary" /> [ AI/ML & FULL STACK DEVELOPER ]
               </p>
               <p className="text-xs sm:text-sm md:text-base font-medium text-text-main/90 leading-relaxed">
-                Hello, I'm <strong className="text-white font-bold">Talha Mumtaz</strong>, a software engineer architecting modern web apps & mobile systems.
+                Hello, I'm <strong className="text-white font-bold">Talha Mumtaz</strong>, an AI/ML and full stack developer architecting intelligent systems, modern web apps & mobile solutions.
               </p>
             </div>
           </motion.div>
@@ -167,7 +167,7 @@ const HeroEditorial = () => {
       {/* FOOTER ACTIONS BAR */}
       <motion.div 
         style={{ opacity: opacityFade }}
-        className="w-full max-w-7xl mx-auto z-30 pt-3 sm:pt-5 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4"
+        className="w-full z-30 pt-3 sm:pt-5 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4"
       >
         {/* Copyright / Role */}
         <div className="text-xs font-mono text-text-muted flex items-center gap-2">

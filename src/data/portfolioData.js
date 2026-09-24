@@ -1,8 +1,8 @@
 export const portfolioData = {
   profile: {
     name: 'Talha Mumtaz',
-    title: 'MERN Stack Developer',
-    role: 'Developer',
+    title: 'AI/ML and Full Stack Developer',
+    role: 'AI/ML and Full Stack Developer',
     availability: 'Available for projects',
     location: 'Remote / Global',
     email: 'mtalha3632@gmail.com',
@@ -31,8 +31,7 @@ export const portfolioData = {
       description: 'A modern web application for a salon, featuring service booking, secure admin dashboard, and responsive design.',
       tech: ['React', 'Node.js', 'MongoDB', 'Tailwind CSS'],
       image: '/projects/salon.webp',
-      featured: true,
-      link: 'https://apex-grooming-salon.vercel.app'
+      featured: true
     }
   ],
   experiences: [
@@ -64,7 +63,7 @@ export const portfolioData = {
         'Optimized cross-browser rendering speed and mobile responsiveness',
         'Built reusable, maintainable UI components using modern frontend toolchains'
       ],
-      skills: ['Frontend Engineering', 'React', 'JavaScript', 'Tailwind CSS', 'UI/UX Design', 'Responsive Web']
+      skills: ['Frontend Engineering', 'React', 'JavaScript', 'Tailwind CSS', 'Responsive Web']
     }
   ],
   roles: [

@@ -19,7 +19,7 @@ const Footer = () => {
       {/* Background Radial Glow */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[300px] bg-primary/5 blur-[120px] pointer-events-none z-0" />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 relative z-10">
+      <div className="w-full px-5 sm:px-8 md:px-10 lg:px-14 relative z-10">
 
         {/* Top Callout Block */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 pb-16 border-b border-white/[0.06]">

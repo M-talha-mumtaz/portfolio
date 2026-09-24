@@ -75,16 +75,14 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Home', path: 'hero' },
+    { name: 'About', path: 'about' },
     { name: 'Experience', path: 'experience' },
     { name: 'Projects', path: 'projects' },
     { name: 'Skills', path: 'skills' },
     { name: 'Contact', path: 'contact' },
   ];
 
-  const isLinkActive = (path) => {
-    if (path === 'hero') return activeSection === 'hero' || activeSection === 'about';
-    return activeSection === path;
-  };
+  const isLinkActive = (path) => activeSection === path;
 
   return (
     <>
@@ -100,12 +98,12 @@ const Navbar = () => {
         <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-primary/70 to-transparent" />
 
         {/* Nav Content Strip */}
-        <nav className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 lg:px-16 flex items-center justify-between h-14 sm:h-16">
+        <nav className="relative w-full px-5 sm:px-8 md:px-10 lg:px-14 flex items-center justify-between h-14 sm:h-16">
           {/* ── Left: Logo ── */}
           <a
             href="#"
             onClick={handleScrollToTop}
-            className="group flex items-center shrink-0 hover:opacity-80 transition-opacity duration-300 cursor-pointer select-none"
+            className="group flex items-center shrink-0 hover:opacity-80 transition-opacity duration-300 cursor-pointer select-none z-10"
           >
             <img
               src={logo}
@@ -118,19 +116,19 @@ const Navbar = () => {
             />
           </a>
 
-          {/* ── Center: Navigation Links with Sliding Underline ── */}
-          <div className="hidden md:flex items-center gap-0">
+          {/* ── Center: Navigation Links with Sliding Underline (Exact Midpoint) ── */}
+          <div className="hidden md:flex items-center gap-0.5 absolute left-1/2 -translate-x-1/2 pointer-events-auto">
             {navLinks.map((link, i) => {
               const active = isLinkActive(link.path);
               return (
                 <Fragment key={link.path}>
                   {i > 0 && (
-                    <span className="text-white/[0.12] mx-1 text-[5px] select-none">●</span>
+                    <span className="text-white/[0.12] mx-1 text-[4px] select-none">●</span>
                   )}
                   <a
                     href={`#${link.path}`}
                     onClick={(e) => handleScrollTo(e, link.path)}
-                    className={`relative px-4 py-2 text-[11px] font-semibold tracking-[0.18em] uppercase transition-colors duration-300 cursor-pointer select-none ${
+                    className={`relative px-3 sm:px-3.5 lg:px-4 py-1.5 text-xs font-semibold tracking-[0.16em] uppercase transition-colors duration-300 cursor-pointer select-none ${
                       active ? 'text-white' : 'text-white/40 hover:text-white/80'
                     }`}
                   >
@@ -138,7 +136,7 @@ const Navbar = () => {
                     {active && (
                       <motion.div
                         layoutId="ledgeActiveUnderline"
-                        className="absolute bottom-0 left-4 right-4 h-[2px] rounded-full bg-gradient-to-r from-primary via-secondary to-primary/40"
+                        className="absolute bottom-0 left-3 right-3 sm:left-3.5 sm:right-3.5 lg:left-4 lg:right-4 h-[2px] rounded-full bg-gradient-to-r from-primary via-secondary to-primary/40"
                         transition={{ type: 'spring', stiffness: 420, damping: 30 }}
                       />
                     )}
@@ -149,26 +147,26 @@ const Navbar = () => {
           </div>
 
           {/* ── Right: Social + CTA ── */}
-          <div className="hidden md:flex items-center gap-5 shrink-0">
+          <div className="hidden md:flex items-center gap-5 lg:gap-6 shrink-0 z-10">
             {/* Compact Social Icons */}
-            <div className="flex items-center gap-2.5">
+            <div className="flex items-center gap-3">
               <a
                 href={portfolioData.profile.socials.github}
                 target="_blank"
                 rel="noreferrer"
-                className="text-white/30 hover:text-white/80 transition-colors duration-300 cursor-pointer"
+                className="text-white/30 hover:text-white/80 transition-colors duration-300 cursor-pointer p-1"
                 title="GitHub"
               >
-                <FaGithub size={15} />
+                <FaGithub size={16} />
               </a>
               <a
                 href={portfolioData.profile.socials.linkedin}
                 target="_blank"
                 rel="noreferrer"
-                className="text-white/30 hover:text-primary transition-colors duration-300 cursor-pointer"
+                className="text-white/30 hover:text-primary transition-colors duration-300 cursor-pointer p-1"
                 title="LinkedIn"
               >
-                <FaLinkedin size={15} />
+                <FaLinkedin size={16} />
               </a>
             </div>
 
@@ -179,11 +177,11 @@ const Navbar = () => {
             <a
               href="#contact"
               onClick={(e) => handleScrollTo(e, 'contact')}
-              className="group inline-flex items-center gap-1.5 text-[11px] font-bold tracking-[0.15em] uppercase text-primary hover:text-white transition-colors duration-300 cursor-pointer select-none"
+              className="group inline-flex items-center gap-1.5 text-xs font-bold tracking-[0.16em] uppercase text-primary hover:text-white transition-colors duration-300 cursor-pointer select-none"
             >
               <span>Let's Talk</span>
               <ArrowUpRight
-                size={13}
+                size={14}
                 className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
               />
             </a>

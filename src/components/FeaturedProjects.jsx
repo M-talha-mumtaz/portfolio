@@ -22,11 +22,11 @@ const ProjectCard = ({ project, index }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 35 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.8, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
-      className="relative w-full min-h-[480px] sm:min-h-[500px] md:min-h-[520px] lg:min-h-[560px] md:aspect-[16/8] rounded-2xl md:rounded-3xl overflow-hidden group cursor-default project-sweep border border-white/10 shadow-2xl flex flex-col justify-end"
+      viewport={{ once: true, margin: '-40px' }}
+      transition={{ duration: 0.7, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
+      className="relative w-full min-h-[420px] sm:min-h-[450px] lg:min-h-[470px] rounded-2xl md:rounded-3xl overflow-hidden group cursor-default project-sweep border border-white/10 shadow-2xl flex flex-col justify-end"
     >
       {/* Background Image */}
       {project.image ? (
@@ -44,35 +44,35 @@ const ProjectCard = ({ project, index }) => {
       )}
 
       {/* Cinematic Bottom Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/80 to-transparent z-10" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/85 to-transparent z-10" />
 
       {/* Content Layer */}
-      <div className="relative z-20 flex flex-col justify-end p-6 sm:p-8 md:p-12 lg:p-16 w-full h-full">
+      <div className="relative z-20 flex flex-col justify-end p-6 sm:p-7 md:p-8 w-full h-full">
         
         {/* Project Number */}
-        <span className="text-[10px] sm:text-xs font-bold text-primary uppercase tracking-[0.35em] mb-2 sm:mb-3">
+        <span className="text-[10px] sm:text-xs font-bold text-primary uppercase tracking-[0.35em] mb-2">
           Project {String(index + 1).padStart(2, '0')}
         </span>
 
         {/* Title */}
-        <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-text-main tracking-tight leading-tight mb-2 sm:mb-4 font-display">
+        <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-text-main tracking-tight leading-tight mb-2 sm:mb-3 font-display">
           {project.title}
         </h3>
 
         {/* Description */}
-        <p className="text-sm md:text-base lg:text-lg text-text-muted/90 font-medium leading-relaxed max-w-3xl mb-4 sm:mb-6">
+        <p className="text-xs sm:text-sm text-text-muted/90 font-medium leading-relaxed max-w-xl mb-3 sm:mb-4">
           {project.description}
         </p>
 
         {/* Problem & Features */}
-        <div className="max-w-3xl mb-6 opacity-0 group-hover:opacity-100 translate-y-3 group-hover:translate-y-0 transition-all duration-500 ease-out hidden md:block">
-          <p className="text-xs text-text-muted/80 mb-2.5">
+        <div className="max-w-xl mb-4 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500 ease-out hidden sm:block">
+          <p className="text-xs text-text-muted/80 mb-2">
             <span className="text-primary font-bold uppercase tracking-wider text-[10px]">Problem: </span>
             {details.problem}
           </p>
-          <div className="flex flex-wrap gap-x-5 gap-y-2">
+          <div className="flex flex-wrap gap-x-4 gap-y-1.5">
             {details.features.map((feat, i) => (
-              <span key={i} className="text-[11px] text-text-muted/70 flex items-center gap-2">
+              <span key={i} className="text-[11px] text-text-muted/70 flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-primary/70" />
                 {feat}
               </span>
@@ -81,43 +81,43 @@ const ProjectCard = ({ project, index }) => {
         </div>
 
         {/* Tech Badges + Links Row */}
-        <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
-          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+        <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
+          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
             {project.tech.map((tech) => (
               <span
                 key={tech}
-                className="text-[10px] sm:text-[11px] font-semibold text-text-muted/90 uppercase tracking-wider px-3 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md"
+                className="text-[10px] sm:text-[11px] font-semibold text-text-muted/90 uppercase tracking-wider px-2.5 py-1 rounded-full border border-white/10 bg-white/5 backdrop-blur-md"
               >
                 {tech}
               </span>
             ))}
           </div>
 
-          <div className="flex items-center gap-4 ml-auto">
+          <div className="flex items-center gap-3 ml-auto">
             {project.link && (
               <a
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-text-main hover:text-primary transition-colors duration-300 cursor-pointer bg-white/10 hover:bg-primary/20 px-4 py-2 rounded-full border border-white/15"
+                className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-text-main hover:text-primary transition-colors duration-300 cursor-pointer bg-white/10 hover:bg-primary/20 px-3.5 py-1.5 rounded-full border border-white/15"
               >
-                Live <ArrowUpRight size={14} />
+                Live <ArrowUpRight size={13} />
               </a>
             )}
             <a
               href={portfolioData.profile.socials.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-text-muted hover:text-text-main transition-colors duration-300 cursor-pointer bg-white/5 hover:bg-white/10 px-4 py-2 rounded-full border border-white/10"
+              className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-text-muted hover:text-text-main transition-colors duration-300 cursor-pointer bg-white/5 hover:bg-white/10 px-3.5 py-1.5 rounded-full border border-white/10"
             >
-              Code <FaGithub size={14} />
+              Code <FaGithub size={13} />
             </a>
           </div>
         </div>
 
         {/* Status Badge */}
         {project.status && (
-          <div className="absolute top-5 right-5 sm:top-6 sm:right-6 md:top-10 md:right-10 inline-flex items-center gap-2 text-[10px] sm:text-xs font-semibold text-text-muted uppercase tracking-wider bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
+          <div className="absolute top-4 right-4 sm:top-5 sm:right-5 inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-semibold text-text-muted uppercase tracking-wider bg-black/50 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
             <span className="w-2 h-2 rounded-full bg-secondary/80 animate-pulse" />
             {project.status}
           </div>
@@ -131,11 +131,11 @@ const FeaturedProjects = () => {
   const { projects } = portfolioData;
 
   return (
-    <section className="py-28 md:py-40 lg:py-48 relative overflow-hidden" id="projects">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
+    <section className="py-16 md:py-24 relative overflow-hidden" id="projects">
+      <div className="w-full px-5 sm:px-8 md:px-10 lg:px-14">
 
         {/* Section Header */}
-        <div className="flex items-center gap-4 mb-16 md:mb-24">
+        <div className="flex items-center gap-4 mb-10 md:mb-14">
           <motion.span
             initial={{ opacity: 0, x: -10 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -154,8 +154,8 @@ const FeaturedProjects = () => {
           />
         </div>
 
-        {/* Project Cards - Generous Vertical Gap */}
-        <div className="flex flex-col gap-16 md:gap-24 lg:gap-32">
+        {/* Project Cards Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
           {projects.map((project, idx) => (
             <ProjectCard key={project.id} project={project} index={idx} />
           ))}
