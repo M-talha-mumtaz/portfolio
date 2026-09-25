@@ -86,11 +86,11 @@ const ContactTerminal = () => {
     `input-editorial ${errors[field] ? 'border-b-rose-500/80' : ''}`;
 
   return (
-    <section className="py-28 md:py-36 relative overflow-hidden" id="contact">
+    <section className="pt-10 sm:pt-14 md:pt-16 pb-24 sm:pb-32 relative overflow-hidden scroll-mt-6 sm:scroll-mt-8" id="contact">
       <div className="w-full px-5 sm:px-8 md:px-10 lg:px-14">
 
         {/* Section Header */}
-        <div className="flex items-center gap-4 mb-16 md:mb-20">
+        <div className="flex items-center gap-4 mb-8 sm:mb-10">
           <motion.span
             initial={{ opacity: 0, x: -10 }}
             whileInView={{ opacity: 1, x: 0 }}

@@ -167,52 +167,56 @@ const HeroEditorial = () => {
       {/* FOOTER ACTIONS BAR */}
       <motion.div 
         style={{ opacity: opacityFade }}
-        className="w-full z-30 pt-3 sm:pt-5 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4"
+        className="w-full z-30 pt-3 sm:pt-5 border-t border-white/10"
       >
-        {/* Copyright / Role */}
-        <div className="text-xs font-mono text-text-muted flex items-center gap-2">
-          <span>© {profile.name} 2026</span>
-          <span className="text-white/20">•</span>
-          <span className="text-primary font-bold">{profile.role}</span>
-        </div>
+        <div className="relative w-full flex flex-col md:flex-row items-center justify-between gap-3 md:gap-0 min-h-[52px]">
+          {/* Copyright / Role (Left) */}
+          <div className="text-xs font-mono text-text-muted flex items-center gap-2 order-2 md:order-1">
+            <span>© {profile.name} 2026</span>
+            <span className="hidden xl:inline text-white/20">•</span>
+            <span className="hidden xl:inline text-primary font-bold">{profile.role}</span>
+          </div>
 
-        {/* Action CTAs */}
-        <div className="flex items-center gap-3 sm:gap-4 flex-wrap justify-center sm:justify-start">
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-2xl bg-white hover:bg-zinc-100 text-zinc-950 font-black text-xs uppercase tracking-widest shadow-[0_0_25px_rgba(255,255,255,0.25)] hover:shadow-[0_0_35px_rgba(255,255,255,0.45)] hover:scale-[1.03] active:scale-95 transition-all duration-300 cursor-pointer"
-          >
-            <Send size={14} className="text-zinc-950" /> Get In Touch
-          </a>
-
-          <a
-            href="#projects"
-            className="inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-2xl bg-zinc-900/90 text-text-main border border-white/10 hover:border-primary/40 hover:bg-zinc-800 text-xs font-bold uppercase tracking-widest shadow-md hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer backdrop-blur-md"
-          >
-            <FolderGit2 size={14} /> Projects
-          </a>
-
-          {profile.cvUrl && (
+          {/* Action CTAs (Exactly centered in the screen) */}
+          <div className="order-1 md:order-2 md:absolute md:left-1/2 md:-translate-x-1/2 md:top-1/2 md:-translate-y-1/2 flex items-center gap-2.5 sm:gap-3 md:gap-4 flex-wrap justify-center z-20">
             <a
-              href={profile.cvUrl}
-              download="Talha_Mumtaz_CV.pdf"
-              target="_blank"
-              rel="noreferrer"
+              href="#contact"
+              className="inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-2xl bg-white hover:bg-zinc-100 text-zinc-950 font-black text-xs uppercase tracking-widest shadow-[0_0_25px_rgba(255,255,255,0.25)] hover:shadow-[0_0_35px_rgba(255,255,255,0.45)] hover:scale-[1.03] active:scale-95 transition-all duration-300 cursor-pointer"
+            >
+              <Send size={14} className="text-zinc-950" /> Get In Touch
+            </a>
+
+            <a
+              href="#projects"
               className="inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-2xl bg-zinc-900/90 text-text-main border border-white/10 hover:border-primary/40 hover:bg-zinc-800 text-xs font-bold uppercase tracking-widest shadow-md hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer backdrop-blur-md"
             >
-              <Download size={14} className="text-primary" /> Download Resume
+              <FolderGit2 size={14} /> Projects
             </a>
-          )}
-        </div>
 
-        {/* Scroll Indicator */}
-        <a
-          href="#about"
-          className="hidden sm:inline-flex items-center gap-2 text-xs font-mono text-text-muted hover:text-primary transition-colors cursor-pointer group"
-        >
-          <span>(Scroll down)</span>
-          <ArrowDown size={14} className="group-hover:translate-y-1 transition-transform" />
-        </a>
+            {profile.cvUrl && (
+              <a
+                href={profile.cvUrl}
+                download="Talha_Mumtaz_CV.pdf"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-2xl bg-zinc-900/90 text-text-main border border-white/10 hover:border-primary/40 hover:bg-zinc-800 text-xs font-bold uppercase tracking-widest shadow-md hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer backdrop-blur-md"
+              >
+                <Download size={14} className="text-primary" /> Download Resume
+              </a>
+            )}
+          </div>
+
+          {/* Scroll Indicator (Right) */}
+          <div className="hidden md:flex items-center justify-end order-3">
+            <a
+              href="#about"
+              className="inline-flex items-center gap-2 text-xs font-mono text-text-muted hover:text-primary transition-colors cursor-pointer group"
+            >
+              <span>(Scroll down)</span>
+              <ArrowDown size={14} className="group-hover:translate-y-1 transition-transform" />
+            </a>
+          </div>
+        </div>
       </motion.div>
     </section>
   );

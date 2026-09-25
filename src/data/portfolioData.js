@@ -42,13 +42,13 @@ export const portfolioData = {
       period: 'Aug 2026 – Sept 2026',
       type: 'Internship',
       location: 'Lahore, Pakistan',
-      description: 'Engineered an end-to-end full stack web application embedded with AI/ML integration, bridging intelligent backend inference pipelines with high-performance responsive interfaces.',
+      description: 'Engineered an end-to-end full stack web application embedded with AI/ML integration, bridging intelligent FastAPI backend inference pipelines with high-performance responsive interfaces.',
       highlights: [
         'Architected full-stack web modules with integrated machine learning capabilities',
         'Engineered responsive user workflows with real-time model inference feedback',
-        'Implemented robust backend endpoints with secure data validation and error handling'
+        'Implemented robust FastAPI backend endpoints with secure data validation and error handling'
       ],
-      skills: ['Full Stack', 'AI/ML Integration', 'React', 'Node.js', 'Python', 'REST APIs']
+      skills: ['Full Stack', 'AI/ML Integration', 'React', 'FastAPI', 'Python', 'REST APIs']
     },
     {
       id: 'ventrex',
@@ -64,6 +64,22 @@ export const portfolioData = {
         'Built reusable, maintainable UI components using modern frontend toolchains'
       ],
       skills: ['Frontend Engineering', 'React', 'JavaScript', 'Tailwind CSS', 'Responsive Web']
+    }
+  ],
+  education: [
+    {
+      id: 'ue',
+      degree: 'BS Computer Science',
+      institution: 'University of Education, Lahore',
+      period: '2023 – 2027',
+      tags: ['Software Engineering', 'Algorithms', 'AI']
+    },
+    {
+      id: 'pgc',
+      degree: 'Intermediate (ICS Physics)',
+      institution: 'Punjab Group of Colleges (PGC), Lahore',
+      period: '2021 – 2023',
+      tags: ['Physics', 'Mathematics', 'CS Foundations']
     }
   ],
   roles: [

@@ -1,285 +1,270 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Building2, 
-  Calendar, 
-  BrainCircuit, 
-  Layers, 
-  ArrowUpRight, 
-  CheckCircle2, 
-  Sparkles, 
-  Terminal,
-  Cpu,
-  Code2
-} from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Calendar, MapPin } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
-const experienceMeta = {
-  netsol: {
-    index: '01',
-    tagline: 'AI/ML Web Application',
-    icon: BrainCircuit,
-    badge: 'AI & Full Stack',
-    accentColor: 'rgba(200, 200, 210, 0.9)',
-    deliverables: [
-      { label: 'AI/ML Integration', detail: 'Connected machine learning inference models to full-stack web workflows.' },
-      { label: 'Real-Time Pipelines', detail: 'Engineered responsive interface feedback with sub-second API latency.' },
-      { label: 'Scalable Architecture', detail: 'Built validated backend endpoints and optimized database models.' },
-    ],
-  },
-  ventrex: {
-    index: '02',
-    tagline: 'Frontend Engineering Core',
-    icon: Layers,
-    badge: 'Frontend Systems',
-    accentColor: 'rgba(180, 180, 195, 0.9)',
-    deliverables: [
-      { label: 'Interface Engineering', detail: 'Delivered high-performance, pixel-perfect responsive web solutions across all viewport sizes.' },
-      { label: 'Performance Tuning', detail: 'Streamlined client-side rendering speed, asset bundles, and mobile smoothness.' },
-      { label: 'Reusable Toolkits', detail: 'Engineered clean, modular UI components to standardize production code.' },
-    ],
-  },
+const experienceBadges = {
+  netsol: 'ACTIVE COMMAND',
+  ventrex: 'PRODUCTION'
 };
 
 const ExperienceTimeline = () => {
-  const { experiences } = portfolioData;
-  const [activeId, setActiveId] = useState(experiences?.[0]?.id || 'netsol');
+  const { experiences, education } = portfolioData;
+  const [hoveredId, setHoveredId] = useState(null);
 
-  if (!experiences || experiences.length === 0) return null;
-
-  const activeExp = experiences.find((e) => e.id === activeId) || experiences[0];
-  const activeMeta = experienceMeta[activeExp.id] || experienceMeta.netsol;
-  const ActiveIcon = activeMeta.icon;
+  // Fallback if education isn't in data yet
+  const educationList = education || [
+    {
+      id: 'ue',
+      degree: 'BS Computer Science',
+      institution: 'University of Education, Lahore',
+      period: '2023 – 2027',
+      tags: ['Software Engineering', 'Algorithms', 'AI']
+    },
+    {
+      id: 'pgc',
+      degree: 'Intermediate (ICS Physics)',
+      institution: 'Punjab Group of Colleges (PGC), Lahore',
+      period: '2021 – 2023',
+      tags: ['Physics', 'Mathematics', 'CS Foundations']
+    }
+  ];
 
   return (
-    <section className="py-20 sm:py-24 md:py-28 relative overflow-hidden" id="experience">
-      {/* Subtle Ambient Canvas Glow */}
-      <div className="absolute top-1/3 left-1/4 -translate-y-1/2 w-96 h-96 bg-primary/[0.04] rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-white/[0.02] rounded-full blur-[120px] pointer-events-none" />
+    <section className="pt-10 sm:pt-14 md:pt-16 pb-24 sm:pb-32 relative overflow-hidden bg-[#09090b] scroll-mt-6 sm:scroll-mt-8" id="experience">
+      
+      {/* Subtle Ambient Monochrome Background Glow */}
+      <div className="absolute top-1/4 left-1/4 w-[600px] h-[350px] bg-white/[0.02] rounded-full blur-[170px] pointer-events-none z-0" />
+      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[300px] bg-white/[0.015] rounded-full blur-[150px] pointer-events-none z-0" />
 
       <div className="w-full px-5 sm:px-8 md:px-10 lg:px-14 relative z-10">
         
-        {/* Section Header */}
-        <div className="flex items-center gap-4 mb-4">
-          <motion.span
-            initial={{ opacity: 0, x: -10 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-xs font-bold text-primary uppercase tracking-[0.35em]"
-          >
-            Experience
-          </motion.span>
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="h-px w-20 bg-gradient-to-r from-primary/60 to-transparent origin-left"
-          />
-        </div>
-
-        {/* Section Heading & Context */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 md:mb-12">
+        {/* ── SECTION HEADER ── */}
+        <div className="flex items-end justify-between gap-4 mb-10 sm:mb-12">
           <div>
+            {/* Tagline Badge with Line */}
+            <div className="flex items-center gap-4 mb-2.5">
+              <motion.span
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="text-[11px] font-bold text-primary uppercase tracking-[0.35em]"
+              >
+                Experience
+              </motion.span>
+              <motion.div
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="h-px w-16 bg-gradient-to-r from-primary/60 to-transparent origin-left"
+              />
+            </div>
+
             <motion.h2
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-text-main tracking-tight font-display"
+              transition={{ duration: 0.6 }}
+              className="text-2xl sm:text-3xl md:text-4xl font-display font-bold tracking-tight text-text-main"
             >
-              Engineering <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-300 to-zinc-500">Dossier</span>
+              Professional Journey.
             </motion.h2>
           </div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-xs sm:text-sm text-text-muted max-w-sm leading-relaxed"
-          >
-            Interactive chronicle of high-impact internships bridging full-stack systems and frontend craftsmanship.
-          </motion.p>
-        </div>
-
-        {/* MOBILE VIEW: SLEEK SEGMENTED SWITCHER (< md) */}
-        <div className="md:hidden mb-6">
-          <div className="flex items-center p-1.5 rounded-2xl bg-zinc-900/90 border border-white/10 backdrop-blur-md">
-            {experiences.map((exp) => {
-              const isActive = exp.id === activeId;
-              const meta = experienceMeta[exp.id];
-
-              return (
-                <button
-                  key={exp.id}
-                  onClick={() => setActiveId(exp.id)}
-                  className={`relative flex-1 py-2.5 px-3 rounded-xl text-xs font-mono font-bold tracking-wider transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer ${
-                    isActive ? 'text-zinc-950 font-black' : 'text-text-muted hover:text-text-main'
-                  }`}
-                >
-                  {isActive && (
-                    <motion.div
-                      layoutId="mobileActivePill"
-                      className="absolute inset-0 bg-white rounded-xl shadow-[0_0_20px_rgba(255,255,255,0.25)]"
-                      transition={{ type: 'spring', stiffness: 450, damping: 35 }}
-                    />
-                  )}
-                  <span className="relative z-10 text-[10px] opacity-70">{meta.index}</span>
-                  <span className="relative z-10 truncate">{exp.company.split(' ')[0]}</span>
-                </button>
-              );
-            })}
+          {/* Minimalist Top Right Accent Bar (Monochrome Theme) */}
+          <div className="hidden sm:flex items-center gap-2 mb-2">
+            <div className="w-16 sm:w-24 h-1 rounded-full bg-gradient-to-r from-zinc-300 via-zinc-500 to-transparent shadow-[0_0_10px_rgba(255,255,255,0.2)]" />
           </div>
         </div>
 
-        {/* MAIN INTERACTIVE GRID (DESKTOP & MOBILE DOSSIER) */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+        {/* ── MAIN PARALLEL GRID (EXPERIENCE + ACADEMIC BLUEPRINT) ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
           
-          {/* DESKTOP NAVIGATOR: TIMELINE CARDS (col-span-4 lg:col-span-4) */}
-          <div className="hidden md:flex flex-col gap-3.5 md:col-span-5 lg:col-span-4 justify-center">
-            {experiences.map((exp) => {
-              const isActive = exp.id === activeId;
-              const meta = experienceMeta[exp.id];
-              const ItemIcon = meta.icon;
+          {/* ── LEFT COLUMN: WORK EXPERIENCE WITH TIMELINE AXIS (lg:col-span-8) ── */}
+          <div className="lg:col-span-8 relative">
+            
+            {/* Timeline Vertical Axis Line (Desktop & Tablet) */}
+            <div className="absolute left-[11px] top-6 bottom-6 w-[2px] bg-zinc-800/80 pointer-events-none hidden sm:block" />
 
-              return (
-                <motion.div
-                  key={exp.id}
-                  onClick={() => setActiveId(exp.id)}
-                  whileHover={{ x: 4 }}
-                  transition={{ duration: 0.2 }}
-                  className={`relative p-5 rounded-2xl border transition-all duration-300 cursor-pointer text-left select-none group ${
-                    isActive
-                      ? 'bg-zinc-900/80 border-primary/40 shadow-[0_0_30px_rgba(200,200,210,0.08)]'
-                      : 'bg-zinc-950/40 border-white/8 hover:border-white/20 hover:bg-zinc-900/30'
-                  }`}
-                >
-                  {/* Left Active Glow Indicator Strip */}
-                  {isActive && (
-                    <motion.div
-                      layoutId="desktopActiveBar"
-                      className="absolute left-0 top-3 bottom-3 w-1 bg-gradient-to-b from-white via-primary to-primary/40 rounded-r-full shadow-[0_0_12px_rgba(255,255,255,0.6)]"
-                    />
-                  )}
+            <div className="space-y-6 sm:space-y-8">
+              {experiences.map((exp) => {
+                const isHovered = hoveredId === exp.id;
+                const badgeText = experienceBadges[exp.id] || 'VERIFIED';
 
-                  <div className="flex items-start justify-between gap-3 mb-2">
-                    <div className="flex items-center gap-2.5">
-                      <div className={`w-8 h-8 rounded-xl flex items-center justify-center border transition-colors ${
-                        isActive ? 'bg-primary/15 border-primary/40 text-primary' : 'bg-white/5 border-white/10 text-text-muted group-hover:text-text-main'
-                      }`}>
-                        <ItemIcon size={16} />
+                return (
+                  <div key={exp.id} className="relative sm:pl-10">
+                    
+                    {/* Timeline Node Beacon (Black / Grey / White) */}
+                    <div className="absolute left-0 top-6 hidden sm:flex items-center justify-center z-20">
+                      <div className="w-6 h-6 rounded-full bg-[#09090b] flex items-center justify-center">
+                        <div className={`w-3.5 h-3.5 rounded-full transition-all duration-500 ease-out ${
+                          isHovered 
+                            ? 'bg-white shadow-[0_0_16px_rgba(255,255,255,0.9)] scale-110' 
+                            : 'bg-zinc-600 shadow-[0_0_6px_rgba(255,255,255,0.15)]'
+                        }`} />
                       </div>
-                      <span className="text-xs font-mono font-bold text-primary/90 tracking-wider">
-                        {meta.index} // {meta.badge}
-                      </span>
                     </div>
 
-                    <span className="text-[11px] font-mono text-text-muted/80 bg-white/[0.03] px-2 py-0.5 rounded-md border border-white/5">
-                      {exp.period.split('–')[0].trim()}
-                    </span>
+                    {/* Interactive Experience Card */}
+                    <div
+                      onMouseEnter={() => setHoveredId(exp.id)}
+                      onMouseLeave={() => setHoveredId(null)}
+                      onClick={() => setHoveredId(isHovered ? null : exp.id)}
+                      className={`relative rounded-[26px] p-6 sm:p-7 md:p-8 bg-[#111114] border transition-all duration-500 ease-out cursor-pointer shadow-xl overflow-hidden group ${
+                        isHovered 
+                          ? 'border-white/30 shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_30px_rgba(255,255,255,0.03)]' 
+                          : 'border-white/[0.07] hover:border-white/20'
+                      }`}
+                    >
+                      {/* Subtle monochrome ambient light on hover */}
+                      <div 
+                        className={`absolute inset-0 bg-gradient-to-r from-white/[0.025] to-transparent pointer-events-none transition-opacity duration-500 ease-out ${
+                          isHovered ? 'opacity-100' : 'opacity-0'
+                        }`} 
+                      />
+
+                      {/* Header Row: Role Title & Badge */}
+                      <div className="flex items-start justify-between gap-3 mb-2.5 relative z-10">
+                        <h3 className="text-lg sm:text-xl font-display font-bold text-white tracking-tight">
+                          {exp.role}
+                        </h3>
+
+                        {/* Top-Right Pill Badge (Monochrome Theme) */}
+                        <span className={`px-2.5 py-1 rounded-full text-[9.5px] font-mono font-medium tracking-wider uppercase shrink-0 transition-colors duration-300 ${
+                          isHovered 
+                            ? 'bg-white/10 border border-white/25 text-white' 
+                            : 'bg-white/[0.04] border border-white/10 text-zinc-400'
+                        }`}>
+                          {badgeText}
+                        </span>
+                      </div>
+
+                      {/* Company Line with Styled Italicized Name */}
+                      <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-text-muted mb-3 relative z-10 font-sans">
+                        <span className="font-semibold text-zinc-100 text-sm sm:text-base">
+                          {exp.company}
+                        </span>
+                        <span className="text-zinc-600">·</span>
+                        <span className="text-zinc-400 text-xs">
+                          {exp.location}
+                        </span>
+                        <span className="text-zinc-600">·</span>
+                        <span className="text-zinc-400 text-xs font-mono">
+                          {exp.period}
+                        </span>
+                      </div>
+
+                      {/* Brief Base Summary */}
+                      <p className="text-xs sm:text-[13px] md:text-sm text-zinc-400 group-hover:text-zinc-300 leading-relaxed font-normal relative z-10 font-sans transition-colors duration-200">
+                        {exp.description}
+                      </p>
+
+                      {/* ── ON HOVERING: SILKY SMOOTH SLIDE-DOWN DRAWER ── */}
+                      <motion.div
+                        initial={false}
+                        animate={{
+                          height: isHovered ? 'auto' : 0,
+                          opacity: isHovered ? 1 : 0,
+                          marginTop: isHovered ? 16 : 0,
+                        }}
+                        transition={{
+                          duration: 0.45,
+                          ease: [0.16, 1, 0.3, 1], // Smooth Apple/Linear cubic-bezier
+                        }}
+                        className="overflow-hidden relative z-10"
+                      >
+                        <div className="pt-3.5 border-t border-white/[0.08]">
+                          {/* Key Highlights (Concise Bullets) */}
+                          <div className="space-y-2 mb-3.5">
+                            {exp.highlights.map((item, hIdx) => (
+                              <div key={hIdx} className="flex items-start gap-2.5 text-xs sm:text-[13px] text-zinc-300 font-sans leading-relaxed">
+                                <span className="w-1.5 h-1.5 rounded-full bg-zinc-400 mt-1.5 shrink-0" />
+                                <span>{item}</span>
+                              </div>
+                            ))}
+                          </div>
+
+                          {/* Tech Badges (Black / Grey / White) */}
+                          <div className="flex flex-wrap items-center gap-1.5 pt-1">
+                            {exp.skills.map((skill, sIdx) => (
+                              <span
+                                key={sIdx}
+                                className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/10 text-[11px] font-mono text-zinc-300 hover:text-white hover:border-white/20 transition-colors"
+                              >
+                                {skill}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </motion.div>
+
+                      {/* Micro visual hint on mobile devices */}
+                      <div className="mt-2 flex items-center justify-end sm:hidden text-[10px] font-mono text-zinc-500">
+                        <span>{isHovered ? 'Tap to collapse' : 'Tap for details'}</span>
+                      </div>
+                    </div>
                   </div>
+                );
+              })}
+            </div>
 
-                  <h3 className="text-lg font-bold text-text-main font-display group-hover:text-white transition-colors">
-                    {exp.company}
-                  </h3>
-
-                  <p className="text-xs text-text-muted font-medium mt-0.5">
-                    {exp.role}
-                  </p>
-                </motion.div>
-              );
-            })}
           </div>
 
-          {/* ACTIVE MISSION DOSSIER CARD (col-span-8) */}
-          <div className="md:col-span-7 lg:col-span-8">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeExp.id}
-                initial={{ opacity: 0, y: 15, scale: 0.98 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -15, scale: 0.98 }}
-                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="relative rounded-2xl md:rounded-3xl p-6 sm:p-8 md:p-9 bg-zinc-900/40 backdrop-blur-2xl border border-white/10 shadow-2xl h-full flex flex-col justify-between"
-              >
-                {/* Decorative Top Ambient Light */}
-                <div className="absolute top-0 right-10 w-48 h-24 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
+          {/* ── RIGHT COLUMN: ACADEMIC BLUEPRINT (lg:col-span-4) ── */}
+          <div className="lg:col-span-4">
+            <div className="rounded-[26px] p-6 sm:p-7 md:p-8 bg-[#111114] border border-white/[0.07] hover:border-white/20 transition-all duration-500 ease-out shadow-xl relative overflow-hidden">
+              
+              {/* Header: Vertical Monochrome Bar + ACADEMIC BLUEPRINT */}
+              <div className="flex items-center gap-3 mb-8">
+                <div className="w-1.5 h-8 rounded-full bg-gradient-to-b from-white via-zinc-400 to-zinc-600 shadow-[0_0_10px_rgba(255,255,255,0.3)]" />
+                <h3 className="text-base sm:text-lg font-display font-bold text-white tracking-tight leading-tight">
+                  Academic<br />Blueprint
+                </h3>
+              </div>
 
-                <div>
-                  {/* Top Status & Timestamp Strip */}
-                  <div className="flex items-center justify-between gap-3 pb-5 mb-5 border-b border-white/8 flex-wrap">
-                    <div className="flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                      <span className="text-[11px] font-mono uppercase tracking-widest text-text-muted font-semibold">
-                        [ VERIFIED INTERNSHIP ]
-                      </span>
-                    </div>
-
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-800/80 border border-white/10 text-xs font-mono font-medium text-text-muted">
-                      <Calendar size={13} className="text-primary" />
-                      <span>{activeExp.period}</span>
-                    </div>
-                  </div>
-
-                  {/* Role & Company Header */}
-                  <div className="mb-4">
-                    <div className="flex items-center gap-3 mb-1">
-                      <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white font-display tracking-tight">
-                        {activeExp.role}
-                      </h3>
-                    </div>
-
-                    <div className="flex items-center gap-2 text-sm sm:text-base font-semibold text-primary">
-                      <Building2 size={16} className="shrink-0 text-primary/80" />
-                      <span>{activeExp.company}</span>
-                      <span className="text-white/20">•</span>
-                      <span className="text-xs font-mono text-text-muted font-normal">{activeExp.location}</span>
-                    </div>
-                  </div>
-
-                  {/* High-Level Mission Description */}
-                  <p className="text-xs sm:text-sm md:text-base text-text-muted leading-relaxed mb-6">
-                    {activeExp.description}
-                  </p>
-
-                  {/* Core Deliverables Matrix */}
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
-                    {activeMeta.deliverables.map((item, idx) => (
-                      <div 
-                        key={idx}
-                        className="p-3 sm:p-3.5 rounded-xl bg-white/[0.02] border border-white/6 hover:border-white/15 transition-colors"
-                      >
-                        <div className="flex items-center gap-1.5 text-xs font-bold text-text-main mb-1">
-                          <CheckCircle2 size={13} className="text-primary shrink-0" />
-                          <span>{item.label}</span>
-                        </div>
-                        <p className="text-[11px] text-text-muted leading-relaxed">
-                          {item.detail}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Tech Stack Footer */}
-                <div className="pt-4 border-t border-white/8 flex flex-wrap items-center gap-2">
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-text-muted/60 mr-1 flex items-center gap-1">
-                    <Sparkles size={11} className="text-primary/70" /> Stack:
-                  </span>
-                  {activeExp.skills.map((skill, sIdx) => (
-                    <span
-                      key={sIdx}
-                      className="px-2.5 py-1 rounded-lg bg-white/[0.03] border border-white/8 text-[11px] font-mono text-text-muted hover:text-white hover:border-primary/40 hover:bg-zinc-800 transition-all duration-200 cursor-default"
-                    >
-                      {skill}
+              {/* Education List */}
+              <div className="space-y-7">
+                {educationList.map((edu, idx) => (
+                  <div key={edu.id} className="relative">
+                    
+                    {/* Period in subtle grey font */}
+                    <span className="text-xs font-mono font-medium text-zinc-400 tracking-wider block mb-1">
+                      {edu.period}
                     </span>
-                  ))}
-                </div>
 
-              </motion.div>
-            </AnimatePresence>
+                    {/* Degree */}
+                    <h4 className="text-sm sm:text-base font-display font-bold text-white tracking-tight">
+                      {edu.degree}
+                    </h4>
+
+                    {/* Institution */}
+                    <p className="text-xs font-sans text-text-muted mt-0.5 tracking-normal mb-3">
+                      {edu.institution}
+                    </p>
+
+                    {/* Tags */}
+                    <div className="flex flex-wrap items-center gap-1.5">
+                      {edu.tags.map((tag, tIdx) => (
+                        <span
+                          key={tIdx}
+                          className="px-2.5 py-1 rounded-md bg-white/[0.03] border border-white/10 text-[10px] font-mono text-zinc-300 tracking-wide"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Divider between education items */}
+                    {idx < educationList.length - 1 && (
+                      <div className="h-px w-full bg-white/[0.06] mt-6" />
+                    )}
+                  </div>
+                ))}
+              </div>
+
+            </div>
           </div>
 
         </div>

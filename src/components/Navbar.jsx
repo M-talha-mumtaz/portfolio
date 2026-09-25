@@ -10,48 +10,43 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
 
-  // IntersectionObserver to dynamically highlight navbar links during scrolling
+  // Robust scroll spy & navbar background transformation
   useEffect(() => {
-    const sections = ['hero', 'about', 'experience', 'projects', 'skills', 'contact'];
-    const observerOptions = {
-      root: null,
-      rootMargin: '-30% 0px -50% 0px',
-      threshold: 0,
-    };
+    const sections = ['contact', 'skills', 'projects', 'experience', 'about', 'hero'];
 
-    const observerCallback = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      setIsScrolled(scrollY > 30);
+
+      // When reaching near the bottom of the page, activate contact
+      if (window.innerHeight + scrollY >= document.documentElement.scrollHeight - 60) {
+        setActiveSection('contact');
+        return;
+      }
+
+      // Scan sections from bottom to top against the trigger point (scrollY + navbar/header offset)
+      const triggerPoint = scrollY + 200;
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (el) {
+          const top = el.offsetTop;
+          if (triggerPoint >= top) {
+            setActiveSection(id);
+            break;
+          }
         }
-      });
+      }
     };
 
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
-
-    sections.forEach((id) => {
-      const element = document.getElementById(id);
-      if (element) observer.observe(element);
-    });
-
-    return () => {
-      sections.forEach((id) => {
-        const element = document.getElementById(id);
-        if (element) observer.unobserve(element);
-      });
-    };
-  }, []);
-
-  // Listen to scroll to transform navbar
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 30);
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   // Smooth scroll helper
   const handleScrollTo = (e, id) => {
     e.preventDefault();
+    setActiveSection(id);
     const element = document.getElementById(id);
     if (element) {
       setIsOpen(false);

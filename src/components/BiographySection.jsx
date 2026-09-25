@@ -1,15 +1,32 @@
 import { motion } from 'framer-motion';
 import { 
-  Cpu, 
-  AppWindow, 
-  TabletSmartphone, 
   MapPin, 
   Sparkles, 
   ArrowUpRight, 
-  Zap, 
   ShieldCheck, 
-  Layers 
+  Layers,
+  BrainCircuit,
+  Code2,
+  Smartphone,
+  Gauge,
+  Boxes,
+  Workflow,
+  Radio,
+  Cpu
 } from 'lucide-react';
+import {
+  SiPython,
+  SiFastapi,
+  SiPytorch,
+  SiPostgresql,
+  SiReact,
+  SiNodedotjs,
+  SiExpress,
+  SiMongodb,
+  SiPostman,
+  SiFlutter,
+  SiDart
+} from 'react-icons/si';
 import { portfolioData } from '../data/portfolioData';
 
 const containerVariants = {
@@ -47,46 +64,67 @@ const pillars = [
     id: 'aiml',
     title: 'AI/ML Developer',
     category: 'INTELLIGENT SYSTEMS',
-    icon: Cpu,
+    icon: BrainCircuit,
     description:
-      'Connecting intelligent machine learning inference models with production backends using FastAPI, Python, and SQL databases for real-time intelligence.',
-    techs: ['Python', 'FastAPI', 'AI/ML Integration', 'PostgreSQL', 'Pipelines'],
+      'Designing and deploying intelligent inference pipelines, FastAPI microservices, and neural models for real-time production workflows.',
+    techs: [
+      { name: 'Python', icon: SiPython, color: '#387EB8' },
+      { name: 'FastAPI', icon: SiFastapi, color: '#009688' },
+      { name: 'PyTorch', icon: SiPytorch, color: '#EE4C2C' },
+      { name: 'PostgreSQL', icon: SiPostgresql, color: '#4169E1' },
+      { name: 'Pipelines', icon: Workflow, color: '#38BDF8' },
+    ],
   },
   {
     id: 'fullstack',
     title: 'Full Stack Engineering',
     category: 'WEB ARCHITECTURE',
-    icon: AppWindow,
+    icon: Code2,
     description:
-      'Designing and deploying responsive, scalable web applications with React, Node.js, Express, and MongoDB, complete with clean RESTful APIs and secure authentication.',
-    techs: ['React', 'Node.js', 'Express', 'MongoDB', 'REST APIs'],
+      'Engineering resilient, high-speed web platforms with React 19, Node.js, and Express, backed by clean RESTful APIs and MongoDB.',
+    techs: [
+      { name: 'React', icon: SiReact, color: '#61DAFB' },
+      { name: 'Node.js', icon: SiNodedotjs, color: '#5FA04E' },
+      { name: 'Express', icon: SiExpress, color: '#E2E8F0' },
+      { name: 'MongoDB', icon: SiMongodb, color: '#47A248' },
+      { name: 'REST APIs', icon: SiPostman, color: '#FF6C37' },
+    ],
   },
   {
     id: 'mobile',
     title: 'Cross-Platform Mobile',
     category: 'MOBILE SYSTEMS',
-    icon: TabletSmartphone,
+    icon: Smartphone,
     description:
-      'Crafting fluid, high-performance mobile applications using Flutter and Dart, with integrated real-time video audio SDKs and reactive state management.',
-    techs: ['Flutter', 'Dart', 'Agora RTC', 'Mobile UI/UX', 'State Mgmt'],
+      'Crafting fluid 60fps cross-platform mobile apps with Flutter and Dart, integrating live Agora RTC audio/video and reactive state.',
+    techs: [
+      { name: 'Flutter', icon: SiFlutter, color: '#54C5F8' },
+      { name: 'Dart', icon: SiDart, color: '#00B4AB' },
+      { name: 'Agora RTC', icon: Radio, color: '#099DFD' },
+      { name: 'Mobile UI/UX', icon: Sparkles, color: '#F59E0B' },
+      { name: 'State Mgmt', icon: Layers, color: '#A78BFA' },
+    ],
   },
 ];
 
 const principles = [
   {
-    icon: Zap,
+    icon: Gauge,
+    color: '#10B981',
     title: 'Performance First',
     badge: '60 FPS',
     detail: 'Zero unnecessary renders, optimized asset bundles, and fluid 60fps micro-interactions.',
   },
   {
-    icon: Layers,
+    icon: Boxes,
+    color: '#38BDF8',
     title: 'Clean Architecture',
     badge: 'MODULAR',
     detail: 'Modular component design, scalable state patterns, and maintainable codebases.',
   },
   {
     icon: ShieldCheck,
+    color: '#A78BFA',
     title: 'Production Resilience',
     badge: 'VERIFIED',
     detail: 'End-to-end data validation, secure API endpoints, and comprehensive error handling.',
@@ -177,41 +215,94 @@ const BiographySection = () => {
           {/* Subtle gradient corner accent */}
           <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-bl from-white/[0.03] to-transparent pointer-events-none" />
 
-          <p className="text-justify [text-justify:inter-word] text-base sm:text-lg md:text-xl lg:text-[1.25rem] text-text-muted font-normal leading-relaxed md:leading-loose max-w-5xl">
-            {words.map((word, i) => {
-              const highlights = [
-                'ai/ml',
-                'mern',
-                'flutter',
-                'dart',
-                'engineer',
-                'developer',
-                'backend',
-                'full',
-                'stack',
-                'machine',
-                'learning',
-                'python',
-                'fastapi',
-              ];
-              const isHighlighted = highlights.some((h) =>
-                word.toLowerCase().includes(h)
-              );
-              return (
-                <span key={i} className="inline">
-                  <motion.span
-                    variants={wordVariants}
-                    className={`inline-block ${
-                      isHighlighted ? 'text-text-main font-semibold' : ''
-                    }`}
-                  >
-                    {word}
-                  </motion.span>
-                  {i < words.length - 1 ? ' ' : ''}
-                </span>
-              );
-            })}
-          </p>
+          {/* Main Card Content Grid (Paragraph + Telemetry Deck) */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+            
+            {/* Left Column: Narrative Biography Paragraph (lg:col-span-8) */}
+            <div className="lg:col-span-8">
+              <p className="text-justify [text-justify:inter-word] text-base sm:text-lg md:text-xl lg:text-[1.2rem] text-text-muted font-normal leading-relaxed md:leading-loose">
+                {words.map((word, i) => {
+                  const highlights = [
+                    'ai/ml',
+                    'mern',
+                    'flutter',
+                    'dart',
+                    'engineer',
+                    'developer',
+                    'backend',
+                    'full',
+                    'stack',
+                    'machine',
+                    'learning',
+                    'python',
+                    'fastapi',
+                  ];
+                  const isHighlighted = highlights.some((h) =>
+                    word.toLowerCase().includes(h)
+                  );
+                  return (
+                    <span key={i} className="inline">
+                      <motion.span
+                        variants={wordVariants}
+                        className={`inline-block ${
+                          isHighlighted ? 'text-text-main font-semibold' : ''
+                        }`}
+                      >
+                        {word}
+                      </motion.span>
+                      {i < words.length - 1 ? ' ' : ''}
+                    </span>
+                  );
+                })}
+              </p>
+            </div>
+
+            {/* Right Column: Engineering Telemetry Deck (lg:col-span-4) */}
+            <div className="lg:col-span-4">
+              <div className="rounded-2xl bg-zinc-950/70 border border-white/[0.08] p-5 sm:p-6 backdrop-blur-xl relative overflow-hidden group hover:border-white/20 transition-all duration-300 shadow-xl">
+                {/* Subtle top ambient shimmer */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-white/[0.02] rounded-full blur-2xl pointer-events-none" />
+
+                {/* Header */}
+                <div className="flex items-center justify-between pb-3.5 mb-3.5 border-b border-white/[0.06]">
+                  <div className="flex items-center gap-2">
+                    <Cpu size={14} className="text-zinc-300" />
+                    <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-zinc-400 font-bold">
+                      Stack Specs
+                    </span>
+                  </div>
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-mono text-[9px] uppercase tracking-wider font-semibold">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    Production
+                  </span>
+                </div>
+
+                {/* Specs Rows */}
+                <div className="space-y-3 font-mono">
+                  <div className="flex items-center justify-between text-xs pb-2 border-b border-white/[0.04]">
+                    <span className="text-zinc-500 text-[11px]">Primary Domain</span>
+                    <span className="text-white font-bold text-xs">AI/ML + Full Stack</span>
+                  </div>
+
+                  <div className="flex items-center justify-between text-xs pb-2 border-b border-white/[0.04]">
+                    <span className="text-zinc-500 text-[11px]">Backend Core</span>
+                    <span className="text-zinc-200 font-semibold text-xs">FastAPI · Python · Node</span>
+                  </div>
+
+                  <div className="flex items-center justify-between text-xs pb-2 border-b border-white/[0.04]">
+                    <span className="text-zinc-500 text-[11px]">Client Systems</span>
+                    <span className="text-zinc-200 font-semibold text-xs">React 19 · Flutter</span>
+                  </div>
+
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-zinc-500 text-[11px]">Data Architecture</span>
+                    <span className="text-zinc-200 font-semibold text-xs">MongoDB · PostgreSQL</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
 
           <div className="mt-6 pt-6 border-t border-white/[0.06] flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-text-muted">
             <div className="flex items-center gap-2">
@@ -286,16 +377,38 @@ const BiographySection = () => {
                     </p>
                   </div>
 
-                  {/* Tech tags */}
-                  <div className="relative z-10 pt-3.5 border-t border-[#222222] flex flex-wrap gap-1.5">
-                    {pillar.techs.map((tech) => (
-                      <span
-                        key={tech}
-                        className="text-[10px] font-mono px-2.5 py-1 rounded-md bg-[#161616] text-zinc-400 group-hover:text-zinc-300 border border-[#242424] group-hover:border-[#333333] hover:!border-zinc-400 hover:!text-white hover:!bg-[#222222] transition-all cursor-default"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                  {/* Tech stack chips with brand colors & interactive hover effects */}
+                  <div className="relative z-10 pt-3.5 border-t border-white/[0.08] flex flex-wrap gap-2">
+                    {pillar.techs.map((tech) => {
+                      const TechIcon = tech.icon;
+                      return (
+                        <div
+                          key={tech.name}
+                          className="group/chip inline-flex items-center gap-1.5 text-[11px] font-mono px-2.5 py-1.5 rounded-lg bg-[#141416] text-zinc-300 border border-white/[0.08] hover:text-white transition-all duration-300 cursor-pointer shadow-sm hover:-translate-y-0.5 select-none"
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.borderColor = `${tech.color}60`;
+                            e.currentTarget.style.boxShadow = `0 4px 20px ${tech.color}25, inset 0 1px 0 rgba(255,255,255,0.12)`;
+                            e.currentTarget.style.backgroundColor = `${tech.color}10`;
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.borderColor = '';
+                            e.currentTarget.style.boxShadow = '';
+                            e.currentTarget.style.backgroundColor = '';
+                          }}
+                        >
+                          <TechIcon
+                            className="w-3.5 h-3.5 transition-all duration-300 group-hover/chip:scale-125 group-hover/chip:rotate-6 shrink-0"
+                            style={{
+                              color: tech.color,
+                              filter: `drop-shadow(0 0 5px ${tech.color}50)`,
+                            }}
+                          />
+                          <span className="font-medium tracking-tight group-hover/chip:text-white transition-colors duration-200">
+                            {tech.name}
+                          </span>
+                        </div>
+                      );
+                    })}
                   </div>
                 </motion.div>
               );
@@ -321,12 +434,26 @@ const BiographySection = () => {
                 <div
                   key={i}
                   className="group/tenet relative rounded-xl border border-transparent hover:border-[#323232] hover:bg-gradient-to-b hover:from-[#1c1c1c] hover:to-[#111111] p-4 sm:p-5 transition-all duration-300 flex items-start gap-3.5 hover:shadow-[0_10px_25px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.08)] hover:-translate-y-0.5 cursor-default overflow-hidden"
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = `${p.color}40`;
+                    e.currentTarget.style.boxShadow = `0 8px 24px ${p.color}15, inset 0 1px 0 rgba(255,255,255,0.08)`;
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = '';
+                    e.currentTarget.style.boxShadow = '';
+                  }}
                 >
                   {/* Subtle top hairline on hover */}
                   <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover/tenet:opacity-100 transition-opacity duration-300" />
 
-                  <div className="w-10 h-10 rounded-xl bg-[#181818] border border-[#282828] group-hover/tenet:border-zinc-400 group-hover/tenet:bg-gradient-to-b group-hover/tenet:from-[#2a2a2a] group-hover/tenet:to-[#181818] group-hover/tenet:shadow-[0_0_18px_rgba(255,255,255,0.12),inset_0_1px_0_rgba(255,255,255,0.2)] flex items-center justify-center text-zinc-400 group-hover/tenet:text-white shrink-0 transition-all duration-300">
-                    <PIcon className="w-4.5 h-4.5 group-hover/tenet:scale-110 transition-transform duration-300 drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]" />
+                  <div className="w-10 h-10 rounded-xl bg-[#181818] border border-[#282828] group-hover/tenet:border-zinc-400 group-hover/tenet:bg-gradient-to-b group-hover/tenet:from-[#2a2a2a] group-hover/tenet:to-[#181818] group-hover/tenet:shadow-[0_0_18px_rgba(255,255,255,0.12),inset_0_1px_0_rgba(255,255,255,0.2)] flex items-center justify-center shrink-0 transition-all duration-300">
+                    <PIcon
+                      className="w-4.5 h-4.5 group-hover/tenet:scale-110 transition-transform duration-300"
+                      style={{
+                        color: p.color,
+                        filter: `drop-shadow(0 0 6px ${p.color}50)`,
+                      }}
+                    />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between mb-1 gap-2">

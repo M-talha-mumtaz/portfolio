@@ -13,6 +13,15 @@ try {
 
 // https://vite.dev/config/
 export default defineConfig({
+  server: {
+    watch: {
+      ignored: [
+        '**/src/assets/*.png',
+        '**/*.tmp',
+        '**/.git/**'
+      ]
+    }
+  },
   plugins: [
     react(),
     tailwindcss(),
