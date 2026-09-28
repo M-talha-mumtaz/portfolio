@@ -12,9 +12,13 @@ const caseStudyDetails = {
     problem: 'Small beauty salons lose valuable client bookings using manual text message tracking and excel entries.',
     features: ['Real-time appointment scheduler', 'Stripe payment integration', 'Robust administrator control hub'],
   },
+  'stock-chatbot': {
+    problem: 'Retail investors and traders lack an intuitive assistant to synthesize natural language market queries with quantitative forecasting and live price telemetry.',
+    features: ['Conversational financial NLP engine (Qwen 2.5)', 'XGBoost directional next-day return forecasting', 'Interactive 2-year candlestick chart telemetry'],
+  },
 };
 
-const ProjectCard = ({ project, index }) => {
+const ProjectCard = ({ project, index, isSpanFull }) => {
   const details = caseStudyDetails[project.id] || {
     problem: 'Developing performant, clean solutions for modern user experience workflows.',
     features: ['Dynamic reactive components', 'Optimized database layers', 'Fluid design tokens'],
@@ -26,7 +30,9 @@ const ProjectCard = ({ project, index }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
       transition={{ duration: 0.7, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
-      className="relative w-full min-h-[420px] sm:min-h-[450px] lg:min-h-[470px] rounded-2xl md:rounded-3xl overflow-hidden group cursor-default project-sweep border border-white/10 shadow-2xl flex flex-col justify-end"
+      className={`relative w-full min-h-[420px] sm:min-h-[450px] lg:min-h-[470px] rounded-2xl md:rounded-3xl overflow-hidden group cursor-default project-sweep border border-white/10 shadow-2xl flex flex-col justify-end ${
+        isSpanFull ? 'lg:col-span-2' : ''
+      }`}
     >
       {/* Background Image */}
       {project.image ? (
@@ -105,7 +111,7 @@ const ProjectCard = ({ project, index }) => {
               </a>
             )}
             <a
-              href={portfolioData.profile.socials.github}
+              href={project.github || portfolioData.profile.socials.github}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-text-muted hover:text-text-main transition-colors duration-300 cursor-pointer bg-white/5 hover:bg-white/10 px-3.5 py-1.5 rounded-full border border-white/10"
@@ -131,7 +137,7 @@ const FeaturedProjects = () => {
   const { projects } = portfolioData;
 
   return (
-    <section className="py-16 md:py-24 relative overflow-hidden" id="projects">
+    <section className="py-16 md:py-24 relative overflow-hidden scroll-mt-16 sm:scroll-mt-20" id="projects">
       <div className="w-full px-5 sm:px-8 md:px-10 lg:px-14">
 
         {/* Section Header */}
@@ -156,9 +162,17 @@ const FeaturedProjects = () => {
 
         {/* Project Cards Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
-          {projects.map((project, idx) => (
-            <ProjectCard key={project.id} project={project} index={idx} />
-          ))}
+          {projects.map((project, idx) => {
+            const isSpanFull = projects.length % 2 !== 0 && idx === projects.length - 1;
+            return (
+              <ProjectCard 
+                key={project.id} 
+                project={project} 
+                index={idx} 
+                isSpanFull={isSpanFull}
+              />
+            );
+          })}
         </div>
       </div>
     </section>

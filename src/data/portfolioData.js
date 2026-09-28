@@ -23,7 +23,8 @@ export const portfolioData = {
       tech: ['Flutter', 'Agora SDK', 'Dart'],
       image: '/projects/mentairo.webp',
       featured: true,
-      status: 'Web version coming soon'
+      status: 'Web version coming soon',
+      github: 'https://github.com/M-talha-mumtaz/Mentairo'
     },
     {
       id: 'salon',
@@ -31,7 +32,17 @@ export const portfolioData = {
       description: 'A modern web application for a salon, featuring service booking, secure admin dashboard, and responsive design.',
       tech: ['React', 'Node.js', 'MongoDB', 'Tailwind CSS'],
       image: '/projects/salon.webp',
-      featured: true
+      featured: true,
+      github: 'https://github.com/M-talha-mumtaz/apex-grooming'
+    },
+    {
+      id: 'stock-chatbot',
+      title: 'Zenith Stock AI',
+      description: 'Intelligent financial analytics chatbot and directional forecaster. Synthesizes tactical NLP inquiries with XGBoost machine learning to deliver real-time stock insights and interactive candlestick telemetry.',
+      tech: ['Python', 'FastAPI', 'React', 'Qwen 2.5 LLM', 'XGBoost', 'Tailwind CSS'],
+      image: '/projects/stock.webp',
+      featured: true,
+      github: 'https://github.com/M-talha-mumtaz/stock-market-assistant'
     }
   ],
   experiences: [

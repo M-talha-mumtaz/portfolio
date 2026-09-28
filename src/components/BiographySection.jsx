@@ -140,7 +140,7 @@ const BiographySection = () => {
   const words = paragraph.split(' ');
 
   return (
-    <section className="py-16 md:py-24 relative overflow-hidden" id="about">
+    <section className="py-16 md:py-24 relative overflow-hidden scroll-mt-16 sm:scroll-mt-20" id="about">
       {/* Ambient background glows */}
       <div className="absolute top-1/4 left-1/3 -translate-y-1/2 w-96 h-96 bg-primary/[0.03] rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-10 right-1/4 w-80 h-80 bg-white/[0.02] rounded-full blur-[130px] pointer-events-none" />
@@ -259,7 +259,7 @@ const BiographySection = () => {
 
             {/* Right Column: Engineering Telemetry Deck (lg:col-span-4) */}
             <div className="lg:col-span-4">
-              <div className="rounded-2xl bg-zinc-950/70 border border-white/[0.08] p-5 sm:p-6 backdrop-blur-xl relative overflow-hidden group hover:border-white/20 transition-all duration-300 shadow-xl">
+              <div className="rounded-2xl bg-zinc-950/70 border border-white/[0.08] p-4 sm:p-6 backdrop-blur-xl relative overflow-hidden group hover:border-white/20 transition-all duration-300 shadow-xl">
                 {/* Subtle top ambient shimmer */}
                 <div className="absolute top-0 right-0 w-32 h-32 bg-white/[0.02] rounded-full blur-2xl pointer-events-none" />
 
@@ -279,24 +279,24 @@ const BiographySection = () => {
 
                 {/* Specs Rows */}
                 <div className="space-y-3 font-mono">
-                  <div className="flex items-center justify-between text-xs pb-2 border-b border-white/[0.04]">
-                    <span className="text-zinc-500 text-[11px]">Primary Domain</span>
-                    <span className="text-white font-bold text-xs">AI/ML + Full Stack</span>
+                  <div className="flex items-center justify-between gap-2 text-xs pb-2 border-b border-white/[0.04]">
+                    <span className="text-zinc-500 text-[10px] sm:text-[11px] whitespace-nowrap shrink-0">Primary Domain</span>
+                    <span className="text-white font-bold text-[11px] sm:text-xs whitespace-nowrap text-right">AI/ML + Full Stack</span>
                   </div>
 
-                  <div className="flex items-center justify-between text-xs pb-2 border-b border-white/[0.04]">
-                    <span className="text-zinc-500 text-[11px]">Backend Core</span>
-                    <span className="text-zinc-200 font-semibold text-xs">FastAPI · Python · Node</span>
+                  <div className="flex items-center justify-between gap-2 text-xs pb-2 border-b border-white/[0.04]">
+                    <span className="text-zinc-500 text-[10px] sm:text-[11px] whitespace-nowrap shrink-0">Backend Core</span>
+                    <span className="text-zinc-200 font-semibold text-[11px] sm:text-xs whitespace-nowrap text-right">FastAPI · Python · Node</span>
                   </div>
 
-                  <div className="flex items-center justify-between text-xs pb-2 border-b border-white/[0.04]">
-                    <span className="text-zinc-500 text-[11px]">Client Systems</span>
-                    <span className="text-zinc-200 font-semibold text-xs">React 19 · Flutter</span>
+                  <div className="flex items-center justify-between gap-2 text-xs pb-2 border-b border-white/[0.04]">
+                    <span className="text-zinc-500 text-[10px] sm:text-[11px] whitespace-nowrap shrink-0">Client Systems</span>
+                    <span className="text-zinc-200 font-semibold text-[11px] sm:text-xs whitespace-nowrap text-right">React 19 · Flutter</span>
                   </div>
 
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-zinc-500 text-[11px]">Data Architecture</span>
-                    <span className="text-zinc-200 font-semibold text-xs">MongoDB · PostgreSQL</span>
+                  <div className="flex items-center justify-between gap-2 text-xs">
+                    <span className="text-zinc-500 text-[10px] sm:text-[11px] whitespace-nowrap shrink-0">Data Architecture</span>
+                    <span className="text-zinc-200 font-semibold text-[11px] sm:text-xs whitespace-nowrap text-right">MongoDB · PostgreSQL</span>
                   </div>
                 </div>
               </div>

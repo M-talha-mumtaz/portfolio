@@ -34,11 +34,9 @@ import {
   SiDocker,
   SiPostman,
   SiVite,
-  SiLinux,
   SiPytorch,
   SiTensorflow,
-  SiScikitlearn,
-  SiHuggingface
+  SiScikitlearn
 } from 'react-icons/si';
 import { FaCss3Alt } from 'react-icons/fa';
 
@@ -51,7 +49,7 @@ const ORBIT_VELOCITIES = [
   360 / 58,     // Ring 5: clockwise (~6.21 deg/s)
 ];
 
-// ── 5 PLANETARY SYSTEM DEFINITIONS (27 TOTAL ENGINES) ────────────────────────
+// ── 5 PLANETARY SYSTEM DEFINITIONS (25 TOTAL ENGINES) ────────────────────────
 // Radii calibrated with optimal spacing to eliminate node collisions on small screens
 export const orbitCategories = [
   {
@@ -69,7 +67,6 @@ export const orbitCategories = [
       { name: 'PyTorch', Icon: SiPytorch, color: '#EE4C2C', tag: 'Tensor Engine', role: 'Custom neural architectures, GPU tensor compute & backpropagation', level: 'Production' },
       { name: 'TensorFlow', Icon: SiTensorflow, color: '#FF6F00', tag: 'ML Framework', role: 'Production model pipelines, Keras abstractions & export serving', level: 'Proficient' },
       { name: 'Scikit-Learn', Icon: SiScikitlearn, color: '#F7931E', tag: 'Pipelines', role: 'Feature preprocessing, clustering, regression & model tuning', level: 'Mastery' },
-      { name: 'Hugging Face', Icon: SiHuggingface, color: '#FFD21E', tag: 'Transformers', role: 'Hugging Face Hub, tokenizers, open-source model inference & fine-tuning', level: 'Production' },
     ],
   },
   {
@@ -82,7 +79,7 @@ export const orbitCategories = [
     icon: Code2,
     description: 'Foundational programming, typed systems, scripting runtimes, and semantic visual standards.',
     skills: [
-      { name: 'Python', Icon: SiPython, color: '#3776AB', tag: 'Primary Language', role: 'AI pipelines, FastAPI microservices, scientific math & automation', level: 'Mastery' },
+      { name: 'Python', Icon: SiPython, color: '#3776AB', tag: 'Scripting & AI', role: 'AI pipelines, FastAPI microservices, scientific math & automation', level: 'Basic' },
       { name: 'JavaScript', Icon: SiJavascript, color: '#F7DF1E', tag: 'Web Engine', role: 'Modern ESNext, asynchronous browser engines & event loops', level: 'Mastery' },
       { name: 'Dart', Icon: SiDart, color: '#00B4AB', tag: 'Typed OOP', role: 'Strictly typed client architecture for native mobile compilation', level: 'Advanced' },
       { name: 'HTML5', Icon: SiHtml5, color: '#E34F26', tag: 'Semantics', role: 'Accessible structural DOM, modern semantic canvas & SEO hierarchy', level: 'Mastery' },
@@ -138,7 +135,6 @@ export const orbitCategories = [
       { name: 'Docker', Icon: SiDocker, color: '#2496ED', tag: 'Containers', role: 'Multi-stage container builds & reproducible microservice runtime', level: 'Production' },
       { name: 'Postman', Icon: SiPostman, color: '#FF6C37', tag: 'API Verification', role: 'Automated integration suites, mock servers & telemetry testing', level: 'Advanced' },
       { name: 'Vite', Icon: SiVite, color: '#646CFF', tag: 'Build System', role: 'Next-generation ES module bundler and lightning-fast HMR dev server', level: 'Mastery' },
-      { name: 'Linux', Icon: SiLinux, color: '#FCC624', tag: 'OS Environment', role: 'Shell scripting, POSIX process management & headless server administration', level: 'Advanced' },
     ],
   },
 ];
@@ -302,7 +298,9 @@ const InteractiveSkills = () => {
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                 Tap any planet to inspect telemetry
               </span>
-              <span className="hidden sm:inline">27 Synced</span>
+              <span className="hidden sm:inline">
+                {orbitCategories.reduce((acc, cat) => acc + cat.skills.length, 0)} Synced
+              </span>
             </div>
           </motion.div>
         )}
@@ -311,7 +309,7 @@ const InteractiveSkills = () => {
   );
 
   return (
-    <section className="pt-16 sm:pt-20 md:pt-24 pb-8 md:pb-12 relative overflow-hidden" id="skills">
+    <section className="pt-16 sm:pt-20 md:pt-24 pb-8 md:pb-12 relative overflow-hidden scroll-mt-16 sm:scroll-mt-20" id="skills">
       {/* Subtle Ambient Canvas Glow */}
       <div className="absolute top-1/3 left-1/4 -translate-y-1/2 w-96 h-96 bg-primary/[0.04] rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-white/[0.02] rounded-full blur-[120px] pointer-events-none" />

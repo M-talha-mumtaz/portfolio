@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, MapPin } from 'lucide-react';
+import { Calendar, MapPin, ChevronDown } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 const experienceBadges = {
@@ -11,6 +11,11 @@ const experienceBadges = {
 const ExperienceTimeline = () => {
   const { experiences, education } = portfolioData;
   const [hoveredId, setHoveredId] = useState(null);
+  const [expandedId, setExpandedId] = useState(null);
+
+  const toggleExpand = (id) => {
+    setExpandedId((prev) => (prev === id ? null : id));
+  };
 
   // Fallback if education isn't in data yet
   const educationList = education || [
@@ -90,7 +95,7 @@ const ExperienceTimeline = () => {
 
             <div className="space-y-6 sm:space-y-8">
               {experiences.map((exp) => {
-                const isHovered = hoveredId === exp.id;
+                const isExpanded = hoveredId === exp.id || expandedId === exp.id;
                 const badgeText = experienceBadges[exp.id] || 'VERIFIED';
 
                 return (
@@ -100,7 +105,7 @@ const ExperienceTimeline = () => {
                     <div className="absolute left-0 top-6 hidden sm:flex items-center justify-center z-20">
                       <div className="w-6 h-6 rounded-full bg-[#09090b] flex items-center justify-center">
                         <div className={`w-3.5 h-3.5 rounded-full transition-all duration-500 ease-out ${
-                          isHovered 
+                          isExpanded 
                             ? 'bg-white shadow-[0_0_16px_rgba(255,255,255,0.9)] scale-110' 
                             : 'bg-zinc-600 shadow-[0_0_6px_rgba(255,255,255,0.15)]'
                         }`} />
@@ -111,9 +116,9 @@ const ExperienceTimeline = () => {
                     <div
                       onMouseEnter={() => setHoveredId(exp.id)}
                       onMouseLeave={() => setHoveredId(null)}
-                      onClick={() => setHoveredId(isHovered ? null : exp.id)}
+                      onClick={() => toggleExpand(exp.id)}
                       className={`relative rounded-[26px] p-6 sm:p-7 md:p-8 bg-[#111114] border transition-all duration-500 ease-out cursor-pointer shadow-xl overflow-hidden group ${
-                        isHovered 
+                        isExpanded 
                           ? 'border-white/30 shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_30px_rgba(255,255,255,0.03)]' 
                           : 'border-white/[0.07] hover:border-white/20'
                       }`}
@@ -121,7 +126,7 @@ const ExperienceTimeline = () => {
                       {/* Subtle monochrome ambient light on hover */}
                       <div 
                         className={`absolute inset-0 bg-gradient-to-r from-white/[0.025] to-transparent pointer-events-none transition-opacity duration-500 ease-out ${
-                          isHovered ? 'opacity-100' : 'opacity-0'
+                          isExpanded ? 'opacity-100' : 'opacity-0'
                         }`} 
                       />
 
@@ -131,14 +136,31 @@ const ExperienceTimeline = () => {
                           {exp.role}
                         </h3>
 
-                        {/* Top-Right Pill Badge (Monochrome Theme) */}
-                        <span className={`px-2.5 py-1 rounded-full text-[9.5px] font-mono font-medium tracking-wider uppercase shrink-0 transition-colors duration-300 ${
-                          isHovered 
-                            ? 'bg-white/10 border border-white/25 text-white' 
-                            : 'bg-white/[0.04] border border-white/10 text-zinc-400'
-                        }`}>
-                          {badgeText}
-                        </span>
+                        <div className="flex items-center gap-2 shrink-0">
+                          {/* Top-Right Pill Badge (Monochrome Theme) */}
+                          <span className={`px-2.5 py-1 rounded-full text-[9.5px] font-mono font-medium tracking-wider uppercase shrink-0 transition-colors duration-300 ${
+                            isExpanded 
+                              ? 'bg-white/10 border border-white/25 text-white' 
+                              : 'bg-white/[0.04] border border-white/10 text-zinc-400'
+                          }`}>
+                            {badgeText}
+                          </span>
+
+                          {/* Mobile Dropdown Indicator Button */}
+                          <div
+                            className={`sm:hidden w-6 h-6 rounded-full flex items-center justify-center border transition-all duration-300 ${
+                              isExpanded
+                                ? 'bg-white text-black border-white shadow-[0_0_10px_rgba(255,255,255,0.4)]'
+                                : 'bg-white/[0.05] text-zinc-300 border-white/15'
+                            }`}
+                            aria-label="Toggle details dropdown"
+                          >
+                            <ChevronDown
+                              size={13}
+                              className={`transition-transform duration-300 ${isExpanded ? 'rotate-180 text-black' : 'rotate-0 text-zinc-400'}`}
+                            />
+                          </div>
+                        </div>
                       </div>
 
                       {/* Company Line with Styled Italicized Name */}
@@ -161,13 +183,13 @@ const ExperienceTimeline = () => {
                         {exp.description}
                       </p>
 
-                      {/* ── ON HOVERING: SILKY SMOOTH SLIDE-DOWN DRAWER ── */}
+                      {/* ── ON HOVER / TAP: SILKY SMOOTH SLIDE-DOWN DRAWER ── */}
                       <motion.div
                         initial={false}
                         animate={{
-                          height: isHovered ? 'auto' : 0,
-                          opacity: isHovered ? 1 : 0,
-                          marginTop: isHovered ? 16 : 0,
+                          height: isExpanded ? 'auto' : 0,
+                          opacity: isExpanded ? 1 : 0,
+                          marginTop: isExpanded ? 16 : 0,
                         }}
                         transition={{
                           duration: 0.45,
@@ -200,9 +222,27 @@ const ExperienceTimeline = () => {
                         </div>
                       </motion.div>
 
-                      {/* Micro visual hint on mobile devices */}
-                      <div className="mt-2 flex items-center justify-end sm:hidden text-[10px] font-mono text-zinc-500">
-                        <span>{isHovered ? 'Tap to collapse' : 'Tap for details'}</span>
+                      {/* Mobile Dropdown Action Bar */}
+                      <div className="mt-3.5 pt-3 border-t border-white/[0.07] flex sm:hidden items-center justify-between relative z-10">
+                        <div className="flex items-center gap-1.5 text-zinc-400 font-mono text-[10px]">
+                          <span className={`w-1.5 h-1.5 rounded-full transition-colors duration-300 ${
+                            isExpanded ? 'bg-emerald-400 animate-pulse' : 'bg-zinc-500'
+                          }`} />
+                          <span>{isExpanded ? 'Detailed view open' : 'Click to see detailed info'}</span>
+                        </div>
+                        <div
+                          className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-medium border transition-all duration-300 ${
+                            isExpanded
+                              ? 'bg-white text-black border-white shadow-[0_0_12px_rgba(255,255,255,0.35)]'
+                              : 'bg-white/[0.06] text-zinc-200 border-white/15'
+                          }`}
+                        >
+                          <span>{isExpanded ? 'Collapse' : 'Details'}</span>
+                          <ChevronDown
+                            size={12}
+                            className={`transition-transform duration-300 ${isExpanded ? 'rotate-180 text-black' : 'rotate-0 text-zinc-400'}`}
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
