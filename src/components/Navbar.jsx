@@ -43,85 +43,24 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Silky smooth kinetic scroll function with cubic easing
-  const smoothScrollTo = (targetY, duration = 650) => {
-    if (window._navScrollAnim) {
-      cancelAnimationFrame(window._navScrollAnim);
-      window._navScrollAnim = null;
-    }
-
-    const startY = window.pageYOffset || document.documentElement.scrollTop;
-    const difference = targetY - startY;
-    if (Math.abs(difference) < 4) return;
-
-    const startTime = performance.now();
-
-    // Silky smooth Apple-style cubic easing (accelerates smoothly, decelerates luxuriously)
-    const easeInOutCubic = (t) =>
-      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-
-    const cancelScroll = () => {
-      if (window._navScrollAnim) {
-        cancelAnimationFrame(window._navScrollAnim);
-        window._navScrollAnim = null;
-      }
-      window.removeEventListener('wheel', cancelScroll);
-      window.removeEventListener('touchstart', cancelScroll);
-    };
-
-    window.addEventListener('wheel', cancelScroll, { passive: true });
-    window.addEventListener('touchstart', cancelScroll, { passive: true });
-
-    const step = (currentTime) => {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const easedProgress = easeInOutCubic(progress);
-
-      window.scrollTo(0, startY + difference * easedProgress);
-
-      if (progress < 1) {
-        window._navScrollAnim = requestAnimationFrame(step);
-      } else {
-        window._navScrollAnim = null;
-        window.removeEventListener('wheel', cancelScroll);
-        window.removeEventListener('touchstart', cancelScroll);
-      }
-    };
-
-    window._navScrollAnim = requestAnimationFrame(step);
-  };
-
-  // Smooth scroll helper for both desktop and mobile drawer
+  // Smooth scroll helper
   const handleScrollTo = (e, id) => {
     e.preventDefault();
     setActiveSection(id);
-    document.body.style.overflow = 'unset';
-    setIsOpen(false);
-
-    if (id === 'hero') {
-      window.history.pushState(null, '', '/');
-      smoothScrollTo(0, 650);
-      return;
-    }
-
     const element = document.getElementById(id);
     if (element) {
+      setIsOpen(false);
+      element.scrollIntoView({ behavior: 'smooth' });
       window.history.pushState(null, '', `#${id}`);
-      const navbarHeight = 64;
-      const elementRect = element.getBoundingClientRect();
-      const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
-      const targetY = Math.max(0, elementRect.top + currentScrollY - navbarHeight);
-      smoothScrollTo(targetY, 650);
     }
   };
 
   const handleScrollToTop = (e) => {
     e.preventDefault();
-    document.body.style.overflow = 'unset';
     setIsOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     window.history.pushState(null, '', '/');
     setActiveSection('hero');
-    smoothScrollTo(0, 650);
   };
 
   // Lock body scroll when mobile menu is active
@@ -271,23 +210,23 @@ const Navbar = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="fixed inset-0 bg-black/65 backdrop-blur-md z-40 md:hidden"
+              transition={{ duration: 0.25 }}
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden"
               onClick={() => setIsOpen(false)}
             />
 
             {/* Dropdown Panel */}
             <motion.div
-              initial={{ opacity: 0, y: -14, scaleY: 0.96 }}
+              initial={{ opacity: 0, y: -12, scaleY: 0.96 }}
               animate={{ opacity: 1, y: 0, scaleY: 1 }}
-              exit={{ opacity: 0, y: -12, scaleY: 0.96, transition: { duration: 0.22, ease: [0.16, 1, 0.3, 1] } }}
-              transition={{ type: 'spring', stiffness: 420, damping: 30 }}
+              exit={{ opacity: 0, y: -8, scaleY: 0.97 }}
+              transition={{ type: 'spring', stiffness: 450, damping: 30 }}
               style={{ transformOrigin: 'top' }}
               className="fixed top-[calc(2px+3.5rem)] inset-x-0 z-50 md:hidden px-3 sm:px-5"
             >
-              <div className="bg-[#0c0c0f]/98 backdrop-blur-2xl border border-white/[0.08] rounded-2xl overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.95)]">
+              <div className="bg-[#0c0c0f]/98 backdrop-blur-2xl border border-white/[0.08] rounded-2xl overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.9)]">
                 {/* Links */}
-                <div className="p-3.5 sm:p-4 flex flex-col gap-1">
+                <div className="p-4 flex flex-col gap-0.5">
                   {navLinks.map((link, i) => {
                     const active = isLinkActive(link.path);
                     return (
@@ -297,32 +236,21 @@ const Navbar = () => {
                         onClick={(e) => handleScrollTo(e, link.path)}
                         initial={{ opacity: 0, x: -12 }}
                         animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -6, transition: { duration: 0.15 } }}
-                        transition={{ delay: 0.02 + i * 0.035, duration: 0.22 }}
-                        whileTap={{ scale: 0.97 }}
-                        className={`flex items-center justify-between px-4 py-3.5 rounded-xl text-sm font-semibold tracking-wide transition-all duration-300 cursor-pointer select-none ${
+                        transition={{ delay: 0.03 + i * 0.04, duration: 0.25 }}
+                        className={`flex items-center justify-between px-4 py-3.5 rounded-xl text-sm font-semibold tracking-wide transition-all cursor-pointer ${
                           active
-                            ? 'text-white bg-white/[0.08] border-l-2 border-primary shadow-[inset_0_0_12px_rgba(255,255,255,0.04)]'
-                            : 'text-white/50 hover:text-white/90 hover:bg-white/[0.03] border-l-2 border-transparent'
+                            ? 'text-white bg-white/[0.05] border-l-2 border-primary'
+                            : 'text-white/40 hover:text-white/80 hover:bg-white/[0.02] border-l-2 border-transparent'
                         }`}
                       >
                         <div className="flex items-center gap-3.5">
-                          <span className={`text-[10px] font-mono tabular-nums transition-colors duration-200 ${
-                            active ? 'text-primary' : 'text-zinc-500'
-                          }`}>
+                          <span className="text-[10px] font-mono text-primary/50 w-4 tabular-nums">
                             {String(i + 1).padStart(2, '0')}
                           </span>
                           <span>{link.name}</span>
                         </div>
                         {active && (
-                          <motion.div
-                            layoutId="drawerActiveIndicator"
-                            className="flex items-center gap-1.5"
-                            transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-                          >
-                            <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider">Active</span>
-                            <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_8px_rgba(200,200,210,0.9)] animate-pulse" />
-                          </motion.div>
+                          <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_6px_rgba(200,200,210,0.8)]" />
                         )}
                       </motion.a>
                     );

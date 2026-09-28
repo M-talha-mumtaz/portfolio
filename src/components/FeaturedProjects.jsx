@@ -41,7 +41,11 @@ const ProjectCard = ({ project, index, isSpanFull }) => {
           alt={project.title}
           loading="lazy"
           decoding="async"
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105 filter brightness-[0.35] group-hover:brightness-[0.25]"
+          className={`absolute inset-0 w-full h-full object-cover transition-all duration-[1.2s] ease-out group-hover:scale-[1.02] ${
+            project.id === 'stock-chatbot'
+              ? 'object-top brightness-[0.68] group-hover:brightness-[0.8]'
+              : 'object-center brightness-[0.45] group-hover:brightness-[0.55]'
+          }`}
         />
       ) : (
         <div className="absolute inset-0 bg-bg-surface flex items-center justify-center">
@@ -50,7 +54,13 @@ const ProjectCard = ({ project, index, isSpanFull }) => {
       )}
 
       {/* Cinematic Bottom Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/85 to-transparent z-10" />
+      <div 
+        className={`absolute inset-0 z-10 pointer-events-none transition-opacity duration-500 ${
+          project.id === 'stock-chatbot'
+            ? 'bg-gradient-to-t from-[#09090b] via-[#09090b]/70 to-[#09090b]/10'
+            : 'bg-gradient-to-t from-[#09090b] via-[#09090b]/85 to-transparent'
+        }`} 
+      />
 
       {/* Content Layer */}
       <div className="relative z-20 flex flex-col justify-end p-6 sm:p-7 md:p-8 w-full h-full">
@@ -137,11 +147,11 @@ const FeaturedProjects = () => {
   const { projects } = portfolioData;
 
   return (
-    <section className="py-16 md:py-24 relative overflow-hidden scroll-mt-16 sm:scroll-mt-20" id="projects">
+    <section className="pt-8 sm:pt-10 md:pt-12 pb-16 md:pb-24 relative overflow-hidden scroll-mt-6 sm:scroll-mt-8" id="projects">
       <div className="w-full px-5 sm:px-8 md:px-10 lg:px-14">
 
         {/* Section Header */}
-        <div className="flex items-center gap-4 mb-10 md:mb-14">
+        <div className="flex items-center gap-4 mb-6 sm:mb-8">
           <motion.span
             initial={{ opacity: 0, x: -10 }}
             whileInView={{ opacity: 1, x: 0 }}

@@ -309,7 +309,7 @@ const InteractiveSkills = () => {
   );
 
   return (
-    <section className="pt-16 sm:pt-20 md:pt-24 pb-8 md:pb-12 relative overflow-hidden scroll-mt-16 sm:scroll-mt-20" id="skills">
+    <section className="pt-6 sm:pt-8 md:pt-10 pb-8 md:pb-12 relative overflow-hidden scroll-mt-6 sm:scroll-mt-8" id="skills">
       {/* Subtle Ambient Canvas Glow */}
       <div className="absolute top-1/3 left-1/4 -translate-y-1/2 w-96 h-96 bg-primary/[0.04] rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-white/[0.02] rounded-full blur-[120px] pointer-events-none" />

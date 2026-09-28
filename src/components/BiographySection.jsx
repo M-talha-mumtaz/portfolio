@@ -140,7 +140,7 @@ const BiographySection = () => {
   const words = paragraph.split(' ');
 
   return (
-    <section className="py-16 md:py-24 relative overflow-hidden scroll-mt-16 sm:scroll-mt-20" id="about">
+    <section className="pt-8 sm:pt-10 md:pt-12 pb-16 md:pb-24 relative overflow-hidden scroll-mt-6 sm:scroll-mt-8" id="about">
       {/* Ambient background glows */}
       <div className="absolute top-1/4 left-1/3 -translate-y-1/2 w-96 h-96 bg-primary/[0.03] rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-10 right-1/4 w-80 h-80 bg-white/[0.02] rounded-full blur-[130px] pointer-events-none" />
@@ -148,7 +148,7 @@ const BiographySection = () => {
       <div className="w-full px-5 sm:px-8 md:px-10 lg:px-14 relative z-10">
 
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 md:mb-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 md:mb-10">
           <div>
             <div className="flex items-center gap-4 mb-2.5">
               <motion.span

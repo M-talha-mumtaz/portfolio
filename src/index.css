@@ -47,11 +47,6 @@
   --glow-color-2: rgba(160, 160, 171, 0.04);
 }
 
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
-}
-
 body {
   font-family: 'DM Sans', sans-serif;
   color: var(--text-main);
@@ -60,6 +55,7 @@ body {
   position: relative;
   overflow-x: hidden;
   transition: background-color 0.5s ease, color 0.5s ease;
+  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
 }
 
