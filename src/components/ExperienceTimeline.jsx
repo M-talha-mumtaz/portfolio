@@ -14,7 +14,20 @@ const ExperienceTimeline = () => {
   const [expandedId, setExpandedId] = useState(null);
 
   const toggleExpand = (id) => {
+    setHoveredId(null);
     setExpandedId((prev) => (prev === id ? null : id));
+  };
+
+  const handleMouseEnter = (id) => {
+    if (typeof window !== 'undefined' && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      setHoveredId(id);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (typeof window !== 'undefined' && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      setHoveredId(null);
+    }
   };
 
   // Fallback if education isn't in data yet
@@ -114,8 +127,8 @@ const ExperienceTimeline = () => {
 
                     {/* Interactive Experience Card */}
                     <div
-                      onMouseEnter={() => setHoveredId(exp.id)}
-                      onMouseLeave={() => setHoveredId(null)}
+                      onMouseEnter={() => handleMouseEnter(exp.id)}
+                      onMouseLeave={handleMouseLeave}
                       onClick={() => toggleExpand(exp.id)}
                       className={`relative rounded-[26px] p-6 sm:p-7 md:p-8 bg-[#111114] border transition-all duration-500 ease-out cursor-pointer shadow-xl overflow-hidden group ${
                         isExpanded 
@@ -147,8 +160,13 @@ const ExperienceTimeline = () => {
                           </span>
 
                           {/* Mobile Dropdown Indicator Button */}
-                          <div
-                            className={`sm:hidden w-6 h-6 rounded-full flex items-center justify-center border transition-all duration-300 ${
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleExpand(exp.id);
+                            }}
+                            className={`sm:hidden w-6 h-6 rounded-full flex items-center justify-center border transition-all duration-300 active:scale-95 cursor-pointer ${
                               isExpanded
                                 ? 'bg-white text-black border-white shadow-[0_0_10px_rgba(255,255,255,0.4)]'
                                 : 'bg-white/[0.05] text-zinc-300 border-white/15'
@@ -159,7 +177,7 @@ const ExperienceTimeline = () => {
                               size={13}
                               className={`transition-transform duration-300 ${isExpanded ? 'rotate-180 text-black' : 'rotate-0 text-zinc-400'}`}
                             />
-                          </div>
+                          </button>
                         </div>
                       </div>
 
@@ -230,11 +248,16 @@ const ExperienceTimeline = () => {
                           }`} />
                           <span>{isExpanded ? 'Detailed view open' : 'Click to see detailed info'}</span>
                         </div>
-                        <div
-                          className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-medium border transition-all duration-300 ${
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            toggleExpand(exp.id);
+                          }}
+                          className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-medium border transition-all duration-300 active:scale-95 cursor-pointer ${
                             isExpanded
                               ? 'bg-white text-black border-white shadow-[0_0_12px_rgba(255,255,255,0.35)]'
-                              : 'bg-white/[0.06] text-zinc-200 border-white/15'
+                              : 'bg-white/[0.06] text-zinc-200 border-white/15 hover:border-white/30'
                           }`}
                         >
                           <span>{isExpanded ? 'Collapse' : 'Details'}</span>
@@ -242,7 +265,7 @@ const ExperienceTimeline = () => {
                             size={12}
                             className={`transition-transform duration-300 ${isExpanded ? 'rotate-180 text-black' : 'rotate-0 text-zinc-400'}`}
                           />
-                        </div>
+                        </button>
                       </div>
                     </div>
                   </div>
